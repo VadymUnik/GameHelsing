@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Numerics;
-
-//using System.Numerics;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [Header("Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject reloadTextPrefab;
-    [SerializeField] private float bulletMoveSpeed;
     [SerializeField] private Transform shootPosition;
+
+    [Header("Shooting parameters")]
+    [SerializeField] private float bulletMoveSpeed;
+    [SerializeField] private float bulletDamage;
+    [SerializeField] private float bulletLifeTime;
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private float reloadTime;
     [SerializeField] private int magSize;
-
-    private bool canShoot;
-    private bool isReloading;
+    private bool isOnShotDelay;
+    private bool canShoot = true;
+    private bool isReloading = false;
+    private bool hasReloadText = false;
+    private bool isDashing = false;
     private float shootTimer;
     private float reloadTimer;
+    private int bulletsLeft;
+
     private Camera mainCam;
     private Vector3 mousePos;
-    private int bulletsLeft;
-    private bool hasReloadText = false;
-
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -37,45 +40,56 @@ public class Shooter : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
+        if((Input.GetKey("r") && bulletsLeft < magSize) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0)))
+        {
+            isReloading = true;
+            HandleReloading();
+        }
+
+        if (isReloading || bulletsLeft <= 0 || isDashing)
+        {
+            canShoot = false;
+        }
+        else
+        {
+            canShoot = true;
+        }
+
+        HandleShooting();
+
         if (isReloading) 
         {
             HandleReloading();
         } 
-        else 
-        {
-            HandleShooting();
-        }
-
-        if((Input.GetKey("r") && bulletsLeft < magSize) || (bulletsLeft == 0 && Input.GetMouseButton(0)))
-        {
-            isReloading = true;
-        }
-    }
-
-    public void ShootBullet() {
-        Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
     }
     
+    private void ShootBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
+        if(bullet.TryGetComponent(out Projectile projectile))
+        {
+            projectile.SetParameters(bulletMoveSpeed, bulletLifeTime, bulletDamage);
+        }
+    } 
     private void HandleShooting() 
     {
-        if (!canShoot) 
+        if (!isOnShotDelay) 
         {
             shootTimer += Time.deltaTime;
             if (shootTimer >= timeBetweenShots) 
             {
-                canShoot = true;
+                isOnShotDelay = true;
                 shootTimer = 0f;
             }
         }
 
-        if (Input.GetMouseButton(0) && canShoot && bulletsLeft > 0) 
+        if (Input.GetMouseButton(0) && isOnShotDelay && canShoot) 
         {
             ShootBullet();
             bulletsLeft--;
-            canShoot = false;
+            isOnShotDelay = false;
         }
     }
-
     private void HandleReloading() 
     {
         if (!hasReloadText) 
@@ -93,13 +107,22 @@ public class Shooter : MonoBehaviour
             isReloading = false;
         }
     }
-
-    public void CreateReloadText()
+    private void CreateReloadText()
     {
-        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.Euler(0, 0, 0));
+        GameObject ParentObject = transform.parent.gameObject;
+        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(ParentObject.transform.position.x, ParentObject.transform.position.y + 1), Quaternion.Euler(0, 0, 0), ParentObject.transform);
         if(ReloadText.TryGetComponent(out ReloadTextController reloadTextController))
         {
             reloadTextController.SetReloadTime(reloadTime);
         }
+    }
+
+    public void DetectDashStart()
+    {
+        isDashing = true;
+    }
+    public void DetectDashEnd()
+    {
+        isDashing = false;
     }
 }

@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class playerMovement : MonoBehaviour
 {
+    public UnityEvent OnDash;
+    public UnityEvent OffDash;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public InputAction PlayerMovement;
@@ -16,7 +19,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] float dashSpeed = 10f;
     [SerializeField] float dashDuration = 1f;
     [SerializeField] float dashCooldown = 3f;
-    bool isDashing;
+    public bool isDashing;
     bool canDash = true;
 
     private void Start()
@@ -73,6 +76,7 @@ public class playerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        OnDash.Invoke();
         canDash = false;
         isDashing = true;
         rb.velocity = new Vector2(MoveDirection.x * dashSpeed, MoveDirection.y * dashSpeed);
@@ -80,6 +84,7 @@ public class playerMovement : MonoBehaviour
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
+        OffDash.Invoke();
         canDash = true;
     }
 }
