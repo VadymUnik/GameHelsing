@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
 {
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
+    [SerializeField] private int blueHealth;
     [SerializeField] private int money;
 
     public static event Action OnHealthDataChanged;
@@ -29,6 +30,12 @@ public class PlayerData : MonoBehaviour
         OnHealthDataChanged?.Invoke();
         Debug.Log("+"+ amount + " health! - " + health);
     }
+    private void AddBlueHealth(int amount)
+    {
+        blueHealth += amount;
+        OnHealthDataChanged?.Invoke();
+        Debug.Log("+"+ amount + " blue health! - " + health);
+    }
     private void AddMaxHealth(int amount)
     {
         maxHealth += amount;
@@ -39,7 +46,10 @@ public class PlayerData : MonoBehaviour
     {
         if (!isInvincible)
         {
-        health -= amount;
+            if (blueHealth > 0)
+                blueHealth -= amount; 
+            else
+                health -= amount;
         OnHealthDataChanged?.Invoke();
         Debug.Log("Received " + amount + " damage! - " + health);
         }
@@ -73,7 +83,12 @@ public class PlayerData : MonoBehaviour
     {
         return health;
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    public int GetBlueHealth()
+    {
+        return blueHealth;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyProjectile bullet = collision.GetComponent<EnemyProjectile>();
         if (bullet != null && !isDashing)
@@ -84,19 +99,30 @@ public class PlayerData : MonoBehaviour
         }
 
         HeartPickUp heartPickUp = collision.GetComponent<HeartPickUp>();
-        if (heartPickUp != null && health != maxHealth)
-        {
-            int addedHealth = heartPickUp.GetAddedHealth();
-            AddHealth(addedHealth);
-            Destroy(heartPickUp.gameObject);
-        }
+        if (heartPickUp != null)
+        {   
+            PickupHeartTypes hearthType = heartPickUp.GetHeartType();
 
-        HeartContainerPickUp heartContainerPickUp = collision.GetComponent<HeartContainerPickUp>();
-        if (heartContainerPickUp != null)
-        {
-            int addedMaxHealth = heartContainerPickUp.GetAddedMaxHealth();
-            AddMaxHealth(addedMaxHealth);
-            Destroy(heartContainerPickUp.gameObject);
+            switch(hearthType)
+            {
+                case PickupHeartTypes.Container:
+                    AddMaxHealth(2);
+                    Destroy(heartPickUp.gameObject);
+                    break;
+                case PickupHeartTypes.Red:
+                    if(health != maxHealth)
+                    {
+                    int addedHealth = heartPickUp.GetHealthAmount();
+                    AddHealth(addedHealth);
+                    Destroy(heartPickUp.gameObject);
+                    }
+                    break;
+                case PickupHeartTypes.Blue:
+                    int addedBlueHealth = heartPickUp.GetHealthAmount();
+                    AddBlueHealth(addedBlueHealth);
+                    Destroy(heartPickUp.gameObject);
+                    break;
+            }
         }
     }
 }

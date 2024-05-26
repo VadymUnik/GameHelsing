@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BarHeart : MonoBehaviour
 {
-    [SerializeField] private Sprite fullHeart, halfHeart, emptyHeart;
+    [SerializeField] private Sprite fullHeart, halfHeart, emptyHeart, blueFullHeart, blueHalfHeart;
 
     private Image heartImage;
 
@@ -28,9 +28,28 @@ public class BarHeart : MonoBehaviour
                 break;
         }
     }
+    public void SetBlueHearthImage(BlueHeartStatus status)
+    {
+        switch(status)
+        {
+            case BlueHeartStatus.Half:
+                heartImage.sprite = blueHalfHeart;
+                break;
+            case BlueHeartStatus.Full:
+                heartImage.sprite = blueFullHeart;
+                break;
+        }
+    }
 }
 
 public enum HeartStatus
+{
+    Empty = 0,
+    Half = 1,
+    Full = 2
+}
+
+public enum BlueHeartStatus
 {
     Empty = 0,
     Half = 1,

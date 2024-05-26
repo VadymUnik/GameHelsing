@@ -46,7 +46,7 @@ public class playerMovement : MonoBehaviour
 
         ProcessInputs();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && (MoveDirection.x != 0 || MoveDirection.y != 0))
         {
             StartCoroutine(Dash());
         }
@@ -76,15 +76,15 @@ public class playerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        OnDash.Invoke();
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(MoveDirection.x * dashSpeed, MoveDirection.y * dashSpeed);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
+            OnDash.Invoke();
+            canDash = false;
+            isDashing = true;
+            rb.velocity = new Vector2(MoveDirection.x * dashSpeed, MoveDirection.y * dashSpeed);
+            yield return new WaitForSeconds(dashDuration);
+            isDashing = false;
 
-        yield return new WaitForSeconds(dashCooldown);
-        OffDash.Invoke();
-        canDash = true;
+            yield return new WaitForSeconds(dashCooldown);
+            OffDash.Invoke();
+            canDash = true;
     }
 }

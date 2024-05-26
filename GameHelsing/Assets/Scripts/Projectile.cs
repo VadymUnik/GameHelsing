@@ -8,25 +8,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float lifeTime;
-    [SerializeField] private float damage;
-    [SerializeField] private Rigidbody2D rb;
+    private float moveSpeed;
+    private float lifeTime;
+    private float damage;
     private float timeSinceBirth;
+
+    [SerializeField] private Rigidbody2D rb;
     private Camera mainCam;
     private Vector3 mousePos;
-    public void SetParameters(float moveSpeed, float lifeTime, float damage)
-    {
-        this.moveSpeed = moveSpeed;
-        this.lifeTime = lifeTime;
-        this.damage = damage;
-    }
+    
     void Start()
     {
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        // mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        // mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        // Vector3 direction = mousePos - transform.position;
+        // rb.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        rb.velocity = transform.right * moveSpeed;
     }
     void FixedUpdate()
     {
@@ -36,6 +33,12 @@ public class Projectile : MonoBehaviour
             DestroyProjectile();
         }
     }
+    public void SetParameters(float moveSpeed, float lifeTime, float damage)
+    {
+        this.moveSpeed = moveSpeed;
+        this.lifeTime = lifeTime;
+        this.damage = damage;
+    }
     private void DestroyProjectile()
     {
         Destroy(gameObject);
@@ -43,6 +46,14 @@ public class Projectile : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
