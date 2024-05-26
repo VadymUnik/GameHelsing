@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
+    - target: {fileID: 5044583859379511481, guid: 103b3d55d8ba19644a1e353180c34460, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -818,7 +822,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.856462
+  orthographic size: 9.26
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -861,6 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afbf45287545b4698d7f35e6542d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 283769509}
 --- !u!1001 &535603892
 PrefabInstance:
   m_ObjectHideFlags: 0
