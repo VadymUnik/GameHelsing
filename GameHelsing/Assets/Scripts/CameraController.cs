@@ -66,8 +66,7 @@ public class CameraMovement : MonoBehaviour
 
     void UpdateCameraPosition(){
         Vector3 tempPos;
-        tempPos = Vector3.SmoothDamp(transform.position, target,
-                                    ref refVel, smoothTime);
+        tempPos = Vector3.SmoothDamp(transform.position, target, ref refVel, smoothTime);
         transform.position = tempPos;
     }
 
