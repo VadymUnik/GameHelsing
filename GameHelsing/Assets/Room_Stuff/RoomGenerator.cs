@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Numerics;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Timeline;
 
@@ -8,9 +9,8 @@ public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject startRoomPrefab;
     [SerializeField] private List<GameObject> roomPrefabs;
-    [SerializeField] private List<GameObject> Rooms;
-     [SerializeField] private List<GameObject> RoomsTwo;
-     [SerializeField] private List<GameObject> RoomsThree;
+   // [SerializeField] private List<GameObject> Rooms;
+
     [SerializeField] private int roomsAmount;
 
     private bool UpperLeftOpen = true, UpperRightOpen = true , LowerLeftOpen = true, LowerRightOpen = true;
@@ -18,32 +18,56 @@ public class RoomGenerator : MonoBehaviour
 
     void Start()
     {
-        Rooms.Add(CreateRoom(transform.gameObject, startRoomPrefab, 0));
+        GameObject startRoom = Instantiate(startRoomPrefab, transform.position, transform.rotation);
 
-        for (int i = 0; i < roomsAmount; i++)
+        GenerateRoomBranch(roomsAmount, startRoom, true, 10);
+        
+
+    }
+
+    private void GenerateRoomBranch(int amount, GameObject startingRoom, bool hasSubBranch = false, int subBranchAmount = 0, bool isSubBranch = false)
+    {
+        List<GameObject> Rooms = new List<GameObject>
+        {
+            startingRoom
+        };
+
+        int subBranchIndex = 0;
+        hasSubBranch = isSubBranch ? false : hasSubBranch;
+
+        if (hasSubBranch) 
+        {
+            subBranchIndex = Random.Range(1, amount);
+        }
+
+        for (int i = 0; i < amount; i++)
         {
             GameObject randomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
             Rooms.Add(CreateRoom(Rooms[i], randomPrefab, 2));
-        }
 
-        RoomsTwo.Add(CreateRoom(transform.gameObject, startRoomPrefab, 0));
-        for (int i = 0; i < roomsAmount; i++)
-        {
-            GameObject randomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-            RoomsTwo.Add(CreateRoom(RoomsTwo[i], randomPrefab, 2));
-        }
+            if (i == subBranchIndex && hasSubBranch && Rooms[i].TryGetComponent(out Room _Room))
+            {
+                bool canCreateBranch = _Room.CanCreateBranch();
+                Debug.Log(canCreateBranch);
+                if (canCreateBranch == true)
+                {
+                    Vector2 desiredDirectionBufer = _Room.desiredDirection;
+                    _Room.SetDesiredDirection(SetNewBranchDirection(_Room));
+                    GenerateRoomBranch(subBranchAmount, Rooms[i], false, 0, true);
+                    _Room.desiredDirection = desiredDirectionBufer;
+                }
+                else
+                {
+                    subBranchIndex++;
+                }
 
-        RoomsThree.Add(CreateRoom(transform.gameObject, startRoomPrefab, 0));
-        for (int i = 0; i < roomsAmount; i++)
-        {
-            GameObject randomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-            RoomsThree.Add(CreateRoom(RoomsThree[i], randomPrefab, 2));
+            }
+
         }
     }
-    
+
     private GameObject CreateRoom(GameObject parentRoom, GameObject roomPrefab, float distance)
     {
-
         GameObject newRoom = Instantiate(roomPrefab, parentRoom.transform.position, parentRoom.transform.rotation);
 
         float parentSize;
@@ -56,74 +80,149 @@ public class RoomGenerator : MonoBehaviour
             childSize = _parentroom.GetRoomSize();
 
             positionShift = SetNewRoomDirection(parentSize/2 + distance + childSize/2, _parentroom, _newRoom);
+            if (positionShift == new Vector3(0, 0, 0))
+            {
+                Debug.Log("Created new room! + WRONG DIRECTION");
+                return newRoom;
+            }
             newRoom.transform.position = parentRoom.transform.position + positionShift;
+            _newRoom.direction = new Vector2Int((int)positionShift.x, (int)positionShift.y);
         }    
-        
+        Debug.Log("Created new room!");
         return newRoom;
     }
 
     private Vector3 SetNewRoomDirection(float shift, Room parentRoom, Room newRoom)
     {
-        Vector3 direction = new Vector3(0, shift, 0);
+        Vector3 direction = new Vector3(0, 0, 0);
 
         int upOrSide = Random.Range(0, 9);
 
-        if (parentRoom.desiredHorizontal == 0)
+        bool horisontalCanConnect = false, verticalCanConnect = false;
+
+        if (parentRoom.desiredDirection == new Vector2(0, 0))
+        {
+            if (UpperLeftOpen || UpperRightOpen || LowerLeftOpen || LowerRightOpen)
             {
-                if(UpperLeftOpen && UpperRightOpen)
-                {
-                    int randomDirection = Random.Range(0 , 2);
-                    if(randomDirection == 1)
+                while(newRoom.desiredDirection == new Vector2(0, 0))
                     {
-                        newRoom.desiredHorizontal = -1;
-                        UpperLeftOpen = false;
+                        int randomValue = Random.Range(0, 4);
+                        switch (randomValue)
+                        {
+                            case 0:
+                                if (UpperLeftOpen)
+                                {
+                                    newRoom.desiredDirection.Set(-1, 1);
+                                    UpperLeftOpen = false;
+                                }
+                                break;
+                            case 1:
+                                if (UpperRightOpen)
+                                {
+                                    newRoom.desiredDirection.Set(1, 1);
+                                    UpperRightOpen = false;
+                                }
+                                break;
+                            case 2:
+                                if (LowerLeftOpen)
+                                {
+                                    newRoom.desiredDirection.Set(-1, -1);
+                                    LowerLeftOpen = false;
+                                }
+                                break;
+                            case 3:
+                                if (LowerRightOpen)
+                                {
+                                    newRoom.desiredDirection.Set(1, -1);
+                                    LowerRightOpen = false;
+                                }
+                                break;
+                        }
                     }
-                    else
-                    {
-                        newRoom.desiredHorizontal = 1;
-                        UpperRightOpen = false;
-                    }
-                }
-                else
-                {
-                    if (UpperLeftOpen) newRoom.desiredHorizontal = -1;
-                    if (UpperRightOpen) newRoom.desiredHorizontal = 1;
-                }
             }
+        }
         else
         {
-            newRoom.desiredHorizontal = parentRoom.desiredHorizontal;
+            newRoom.desiredDirection = parentRoom.desiredDirection;
         }
 
+        if ((parentRoom.isRightOpen && newRoom.isLeftOpen && newRoom.desiredDirection.x > 0) || (parentRoom.isLeftOpen && newRoom.isRightOpen && newRoom.desiredDirection.x < 0))
+            horisontalCanConnect = true;
 
+        if ((parentRoom.isUpOpen && newRoom.isDownOpen && newRoom.desiredDirection.y > 0) || (parentRoom.isDownOpen && newRoom.isUpOpen && newRoom.desiredDirection.y < 0))
+            verticalCanConnect = true;
 
-        if (parentRoom.desiredVertical == 0)
+        if(horisontalCanConnect && verticalCanConnect)
         {
-            if(LowerLeftOpen && LowerRightOpen)
-            {   
-                int randomDirection = Random.Range(0 , 2);
-                newRoom.desiredVertical = randomDirection == 0 ? -1 : 1;
-                LowerLeftOpen = newRoom.desiredVertical == -1 ? false : true;
-                LowerRightOpen = newRoom.desiredVertical == 1 ? false : true;
-            }
-            else
-            {
-                newRoom.desiredVertical = LowerLeftOpen ? -1 : newRoom.desiredVertical = 1;
-            }
-        }
-        else
-        {
-            newRoom.desiredVertical = parentRoom.desiredVertical;
+            horisontalCanConnect = upOrSide > 4 ? true : false;
+            verticalCanConnect = upOrSide > 4 ? false : true;
         }
 
-        if (upOrSide > 4)
+        if (horisontalCanConnect)
         {
-            direction.Set(newRoom.desiredHorizontal * shift, 0, 0);
-            return direction;
+            direction.Set(newRoom.desiredDirection.x * shift, 0, 0);
         }
-        else{
-            direction.Set(0, newRoom.desiredVertical * shift, 0);
-            return direction;
+
+        if (verticalCanConnect)
+        {
+            direction.Set(0, newRoom.desiredDirection.y * shift, 0);
         }
+
+        if(direction.x != 0)
+        {
+            newRoom.isLeftOpen = direction.x > 0 ? false : newRoom.isLeftOpen;
+            newRoom.isRightOpen = direction.x < 0 ? false : newRoom.isRightOpen;
+
+            parentRoom.isLeftOpen = direction.x < 0 ? false : parentRoom.isLeftOpen;
+            parentRoom.isRightOpen = direction.x > 0 ? false : parentRoom.isRightOpen;
+        }
+
+        newRoom.isUpOpen = newRoom.desiredDirection.y < 0 ? false : true;
+        newRoom.isDownOpen = newRoom.desiredDirection.y < 0 ? true : false;
+
+        parentRoom.isUpOpen = newRoom.isDownOpen;
+        parentRoom.isDownOpen = newRoom.isUpOpen;
+
+        return direction;
     }
+
+    private Vector2Int SetNewBranchDirection(Room room)
+    {
+        Vector2Int direction = new Vector2Int();
+
+        // if(room.desiredDirection.y == 1)
+        // {
+        //     direction.y = 1;
+        //     if(UpperRightOpen)
+        //     {
+        //         direction.x = 1;
+        //         UpperRightOpen = false;
+        //     }
+        //     else
+        //     {
+        //         direction.x = -1;
+        //         UpperLeftOpen = false;
+        //     }
+        // }
+        // else
+        // {
+        //     direction.y = -1;
+        //     if(LowerRightOpen)
+        //     {
+        //         direction.x = 1;
+        //         LowerRightOpen = false;
+        //     }
+        //     else
+        //     {
+        //         direction.x = -1;
+        //         LowerLeftOpen = false;
+        //     }
+        // }
+        direction.y = (int)room.desiredDirection.y;
+        direction.x = (int)room.desiredDirection.x * -1;
+
+        return direction;
+    }
+
+
 }

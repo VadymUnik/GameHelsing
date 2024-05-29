@@ -255,12 +255,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 981285997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efeb985f4b0051742a53f0bd48fba1ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b343fbf5e73b424981eeb1b23b03a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 1939382052568856392, guid: b5ded595d9cb0a14aa90d57e301766b3, type: 3}
-  agentCount: 5
-  neighborRadius: 5
+  startRoomPrefab: {fileID: 1247947350154130124, guid: bee46949b9920d145b9df7d568577f07, type: 3}
+  roomPrefabs:
+  - {fileID: 1247947350154130124, guid: bee46949b9920d145b9df7d568577f07, type: 3}
+  - {fileID: 1247947350154130124, guid: e0a9fa645a4052b44821a989d6b5e7e0, type: 3}
+  - {fileID: 1247947350154130124, guid: 5ea23eaeac596ae41840cfc0e0c0d577, type: 3}
+  Rooms: []
+  roomsAmount: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
