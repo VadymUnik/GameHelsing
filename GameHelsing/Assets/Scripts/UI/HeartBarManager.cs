@@ -63,6 +63,7 @@ public class HeartBarManager : MonoBehaviour
             j++;
         }
     }
+
     public void CreateEmptyHeart()
     {
         GameObject newHeart = Instantiate(heartPrefab, transform);

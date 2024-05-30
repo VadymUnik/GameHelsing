@@ -52,7 +52,20 @@ public class PlayerData : MonoBehaviour
                 health -= amount;
         OnHealthDataChanged?.Invoke();
         Debug.Log("Received " + amount + " damage! - " + health);
+
+        //game end if hp less= 0
         }
+               if (health <= 0)
+        {
+            // Pause the game
+            Time.timeScale = 0f;
+            // Display "Game Over" in the console
+            Debug.Log("Game Over");
+
+            // Now pause all objects in the scene
+            PauseAllObjects();
+        }
+
     }
     private void IncreaseMaxHealth(int amount)
     {
@@ -123,6 +136,19 @@ public class PlayerData : MonoBehaviour
                     Destroy(heartPickUp.gameObject);
                     break;
             }
+        }
+    }
+
+        private void PauseAllObjects() // for stopping game when hp is zero
+    {
+        // Get all objects in the scene
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        // Pause each object by setting their timeScale to 0
+        foreach (var obj in allObjects)
+        {
+            obj.GetComponent<Rigidbody2D>()?.Sleep(); // For 2D physics
+            obj.GetComponent<Rigidbody>()?.Sleep(); // For 3D physics
         }
     }
 }
