@@ -8,21 +8,30 @@ using UnityEngine.Timeline;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject startRoomPrefab;
+    [SerializeField] private GameObject HallwayPrefab;
     [SerializeField] private List<GameObject> roomPrefabs;
    // [SerializeField] private List<GameObject> Rooms;
 
     [SerializeField] private int roomsAmount;
+    [SerializeField] private int subRoomsAmount;
 
     private bool UpperLeftOpen = true, UpperRightOpen = true , LowerLeftOpen = true, LowerRightOpen = true;
 
 
     void Start()
     {
-        GameObject startRoom = Instantiate(startRoomPrefab, transform.position, transform.rotation);
+        for (int i = 0; i < 30; i++)
+        {
+            UpperLeftOpen = true; UpperRightOpen = true ; LowerLeftOpen = true; LowerRightOpen = true;
+            GameObject startRoom = Instantiate(startRoomPrefab, transform.position, transform.rotation);
+            startRoom.transform.position = new Vector3(i*300, 0, 0);
 
-        GenerateRoomBranch(roomsAmount, startRoom, true, 10);
-        
-
+            GenerateRoomBranch(roomsAmount, startRoom, true, 3);
+            Vector2 desiredDirectionChange = startRoom.GetComponent<Room>().GetDesiredDirection();
+            desiredDirectionChange.y *= -1;
+            startRoom.GetComponent<Room>().SetDesiredDirection(desiredDirectionChange);
+            GenerateRoomBranch(roomsAmount, startRoom, true, 3);
+        }
     }
 
     private void GenerateRoomBranch(int amount, GameObject startingRoom, bool hasSubBranch = false, int subBranchAmount = 0, bool isSubBranch = false)
@@ -43,21 +52,27 @@ public class RoomGenerator : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject randomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-            Rooms.Add(CreateRoom(Rooms[i], randomPrefab, 2));
+            Rooms.Add(CreateRoom(Rooms[i], randomPrefab, 8));
 
             if (i == subBranchIndex && hasSubBranch && Rooms[i].TryGetComponent(out Room _Room))
             {
                 bool canCreateBranch = _Room.CanCreateBranch();
-                Debug.Log(canCreateBranch);
+                
                 if (canCreateBranch == true)
                 {
                     Vector2 desiredDirectionBufer = _Room.desiredDirection;
-                    _Room.SetDesiredDirection(SetNewBranchDirection(_Room));
+
+                    Vector2 newBranchDirection = SetNewBranchDirection(_Room);
+                    _Room.SetDesiredDirection(newBranchDirection);
                     GenerateRoomBranch(subBranchAmount, Rooms[i], false, 0, true);
+
+
+
                     _Room.desiredDirection = desiredDirectionBufer;
                 }
                 else
                 {
+                    Debug.Log("Could not create sub-branch!!!!!");
                     subBranchIndex++;
                 }
 
@@ -76,17 +91,57 @@ public class RoomGenerator : MonoBehaviour
 
         if(newRoom.TryGetComponent(out Room _newRoom) && parentRoom.TryGetComponent(out Room _parentroom))
         {
-            parentSize = _newRoom.GetRoomSize();
-            childSize = _parentroom.GetRoomSize();
+            parentSize = _parentroom.GetRoomSize();
+            childSize = _newRoom.GetRoomSize();
 
-            positionShift = SetNewRoomDirection(parentSize/2 + distance + childSize/2, _parentroom, _newRoom);
+            float shift = parentSize/2 + distance + childSize/2;
+            positionShift = SetNewRoomDirection(shift, _parentroom, _newRoom);
             if (positionShift == new Vector3(0, 0, 0))
             {
                 Debug.Log("Created new room! + WRONG DIRECTION");
                 return newRoom;
             }
             newRoom.transform.position = parentRoom.transform.position + positionShift;
-            _newRoom.direction = new Vector2Int((int)positionShift.x, (int)positionShift.y);
+            _newRoom.direction = new Vector2((int)positionShift.x, (int)positionShift.y).normalized;
+
+
+            if (_newRoom.direction.x != 0)
+            {
+                if (_newRoom.direction.x < 0)
+                {
+                    Destroy(_newRoom.doorRight.gameObject);
+                    Destroy(_parentroom.doorLeft.gameObject);
+                }
+                else
+                {
+                    Destroy(_newRoom.doorLeft.gameObject);
+                    Destroy(_parentroom.doorRight.gameObject);
+                }
+            }
+            else if (_newRoom.direction.y != 0)
+            {
+                if (_newRoom.direction.y < 0)
+                {
+                    Destroy(_newRoom.doorTop.gameObject);
+                    Destroy(_parentroom.doorBottom.gameObject);
+                }
+                else
+                {
+                    Destroy(_newRoom.doorBottom.gameObject);
+                    Destroy(_parentroom.doorTop.gameObject);
+                }
+            }
+
+            
+
+            for (int i = 0; i < distance; i++)
+            {
+                GameObject Hallway = Instantiate(HallwayPrefab, parentRoom.transform.position, parentRoom.transform.rotation); 
+                Hallway.transform.position = new Vector3(parentRoom.transform.position.x + _newRoom.direction.x * (parentSize / 2 + 0.5f + i), parentRoom.transform.position.y + _newRoom.direction.y * (parentSize / 2 + 0.5f + i));
+                if (_newRoom.direction.y != 0)
+                    Hallway.transform.rotation = Quaternion.Euler(0, 0, 90);
+                
+            }
         }    
         Debug.Log("Created new room!");
         return newRoom;
@@ -140,6 +195,7 @@ public class RoomGenerator : MonoBehaviour
                         }
                     }
             }
+            parentRoom.desiredDirection = newRoom.desiredDirection;
         }
         else
         {
@@ -186,40 +242,13 @@ public class RoomGenerator : MonoBehaviour
         return direction;
     }
 
-    private Vector2Int SetNewBranchDirection(Room room)
+    private Vector2 SetNewBranchDirection(Room room)
     {
-        Vector2Int direction = new Vector2Int();
-
-        // if(room.desiredDirection.y == 1)
-        // {
-        //     direction.y = 1;
-        //     if(UpperRightOpen)
-        //     {
-        //         direction.x = 1;
-        //         UpperRightOpen = false;
-        //     }
-        //     else
-        //     {
-        //         direction.x = -1;
-        //         UpperLeftOpen = false;
-        //     }
-        // }
-        // else
-        // {
-        //     direction.y = -1;
-        //     if(LowerRightOpen)
-        //     {
-        //         direction.x = 1;
-        //         LowerRightOpen = false;
-        //     }
-        //     else
-        //     {
-        //         direction.x = -1;
-        //         LowerLeftOpen = false;
-        //     }
-        // }
-        direction.y = (int)room.desiredDirection.y;
-        direction.x = (int)room.desiredDirection.x * -1;
+        Vector2 direction = new Vector2
+        {
+            y = (int)room.desiredDirection.y,
+            x = (int)room.desiredDirection.x * -1
+        };
 
         return direction;
     }

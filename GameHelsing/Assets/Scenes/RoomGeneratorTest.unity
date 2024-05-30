@@ -262,9 +262,9 @@ MonoBehaviour:
   roomPrefabs:
   - {fileID: 1247947350154130124, guid: bee46949b9920d145b9df7d568577f07, type: 3}
   - {fileID: 1247947350154130124, guid: e0a9fa645a4052b44821a989d6b5e7e0, type: 3}
-  - {fileID: 1247947350154130124, guid: 5ea23eaeac596ae41840cfc0e0c0d577, type: 3}
-  Rooms: []
+  - {fileID: 1247947350154130124, guid: 01589633cde98014faaedbb6235b9cb7, type: 3}
   roomsAmount: 10
+  subRoomsAmount: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

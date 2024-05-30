@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private Transform doorLeft, doorRight, doorBottom, doorTop;
+    [SerializeField] public Transform doorLeft, doorRight, doorBottom, doorTop;
     [SerializeField] private float roomSize;
 
+    
+
     public bool isLeftOpen = true, isRightOpen = true, isUpOpen = true, isDownOpen = true;
-    public Vector2Int direction;
+    public Vector2 direction;
     public Vector2 desiredDirection = new Vector2(0, 0);
 
-    void Start()
-    {   
-    }
     public float GetRoomSize()
     {
         return roomSize;
     }
-    public Vector2Int GetDirection()
+    public Vector2 GetDirection()
     {
         return direction;
     }
@@ -49,7 +48,16 @@ public class Room : MonoBehaviour
         return canHorisontal || canVertical;
     }
 
-    public void SetDesiredDirection(Vector2Int desiredDirection)
+    public Vector2 GetDesiredDirection()
+    {
+        return desiredDirection;
+    }
+
+    public void SetRoomSize(float roomSize)
+    {
+        this.roomSize = roomSize;
+    }
+    public void SetDesiredDirection(Vector2 desiredDirection)
     {
         this.desiredDirection = desiredDirection;
     }
