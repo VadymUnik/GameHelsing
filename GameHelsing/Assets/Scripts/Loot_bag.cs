@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Loot_bag : MonoBehaviour
 {
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
+    [SerializeField] private float dropForce = 300f;
 
     Loot GetDroppedItem()
     {
@@ -33,6 +35,10 @@ public class Loot_bag : MonoBehaviour
         {
              GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
              lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+
+            float dropForce = 300f;
+             Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+             lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
 
         }
     }
