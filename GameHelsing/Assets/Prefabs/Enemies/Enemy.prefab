@@ -252,6 +252,9 @@ MonoBehaviour:
   magSize: 0
   detectionDistance: 0
   lineOfSightDuration: 1
+  IgnoreLayersMask:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &2660512178355900080
 GameObject:
   m_ObjectHideFlags: 0

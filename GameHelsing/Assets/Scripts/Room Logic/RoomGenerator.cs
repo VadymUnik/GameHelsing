@@ -28,7 +28,8 @@ public class RoomGenerator : MonoBehaviour
             desiredDirectionChange.y *= -1;
             startRoom.GetComponent<Room>().SetDesiredDirection(desiredDirectionChange);
             GenerateRoomBranch(roomsAmount, startRoom, true, 3);
-        
+
+            AstarPath.active.Scan();
     }
 
     private void GenerateRoomBranch(int amount, GameObject startingRoom, bool hasSubBranch = false, int subBranchAmount = 0, bool isSubBranch = false)

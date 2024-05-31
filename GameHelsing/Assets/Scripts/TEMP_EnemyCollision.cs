@@ -10,6 +10,8 @@ public class TEMP_EnemyCollision : MonoBehaviour
     [SerializeField] private int magSize; //TO FIX - DOES NOTHING!
     [SerializeField] private float detectionDistance; //TO FIX - DOES NOTHING!
     [SerializeField] private float lineOfSightDuration = 0.5f;
+
+    public LayerMask IgnoreLayersMask;
     private Transform target;
     private float health = 50f;
     private float lineOfSightTimer = 0f;
@@ -25,8 +27,8 @@ public class TEMP_EnemyCollision : MonoBehaviour
 
         if (target != null)
         {
-            hit = Physics2D.Raycast(transform.position, (target.transform.position - transform.position).normalized);
-            //healthText.text = "Health: " + health;
+            hit = Physics2D.Raycast(transform.position, (target.transform.position - transform.position).normalized, Mathf.Infinity, IgnoreLayersMask);
+
             if(hit.collider != null)
             {
                 if (hit.collider.CompareTag("Player"))
