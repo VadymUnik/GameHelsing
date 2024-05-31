@@ -113,8 +113,8 @@ public class RoomGenerator : MonoBehaviour
                     _newRoom.EntranceRight.gameObject.SetActive(true);
                     _parentroom.EntranceLeft.gameObject.SetActive(true);
 
-                    _newRoom.gateRight.gameObject.SetActive(true);
-                    _parentroom.gateLeft.gameObject.SetActive(true);
+                    _newRoom.archRight.gameObject.SetActive(true);
+                    _parentroom.archLeft.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -124,8 +124,8 @@ public class RoomGenerator : MonoBehaviour
                     _newRoom.EntranceLeft.gameObject.SetActive(true);
                     _parentroom.EntranceRight.gameObject.SetActive(true);
 
-                    _newRoom.gateLeft.gameObject.SetActive(true);
-                    _parentroom.gateRight.gameObject.SetActive(true);
+                    _newRoom.archLeft.gameObject.SetActive(true);
+                    _parentroom.archRight.gameObject.SetActive(true);
                 }
             }
             else if (_newRoom.direction.y != 0)
@@ -138,8 +138,8 @@ public class RoomGenerator : MonoBehaviour
                     _newRoom.EntranceTop.gameObject.SetActive(true);
                     _parentroom.EntranceBottom.gameObject.SetActive(true);
 
-                    _newRoom.gateTop.gameObject.SetActive(true);
-                    _parentroom.gateBottom.gameObject.SetActive(true);
+                    _newRoom.archTop.gameObject.SetActive(true);
+                    _parentroom.archBottom.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -149,8 +149,8 @@ public class RoomGenerator : MonoBehaviour
                     _newRoom.EntranceBottom.gameObject.SetActive(true);
                     _parentroom.EntranceTop.gameObject.SetActive(true);
 
-                    _newRoom.gateBottom.gameObject.SetActive(true);
-                    _parentroom.gateTop.gameObject.SetActive(true);
+                    _newRoom.archBottom.gameObject.SetActive(true);
+                    _parentroom.archTop.gameObject.SetActive(true);
                 }
             }
 

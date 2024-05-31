@@ -7,7 +7,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField] public Transform doorLeft, doorRight, doorBottom, doorTop;
     [SerializeField] public Transform EntranceLeft, EntranceRight, EntranceBottom, EntranceTop;
-    [SerializeField] public Transform gateLeft, gateRight, gateBottom, gateTop;
+    [SerializeField] public Transform archLeft, archRight, archBottom, archTop;
     [SerializeField] private float roomSize;
 
     
