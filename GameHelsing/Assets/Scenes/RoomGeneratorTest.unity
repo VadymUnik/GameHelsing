@@ -341,9 +341,7 @@ MonoBehaviour:
   XYi: {fileID: 408773561937862896, guid: fece8d14e85d65542b52dde24b4888f6, type: 3}
   ZYi: {fileID: 8037285179063958838, guid: aa626a5d16cb07c48a0785328f0b75cd, type: 3}
   roomPrefabs:
-  - {fileID: 5802067290053644865, guid: b9ff4d7349928b547b5576a72546dc3c, type: 3}
-  - {fileID: 5802067290053644865, guid: b16a95e4248606c4b8d5e79f85a05efa, type: 3}
-  - {fileID: 5802067290053644865, guid: b9ff4d7349928b547b5576a72546dc3c, type: 3}
+  - {fileID: 5802067290053644865, guid: 641c22afb7a73d04f86579280ed412c0, type: 3}
   roomsAmount: 3
   subRoomsAmount: 2
 --- !u!1001 &1027707520
