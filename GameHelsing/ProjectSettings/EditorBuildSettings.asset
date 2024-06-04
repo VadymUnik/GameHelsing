@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SettingUpGun.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainMenu.unity
+    guid: 17baacb95b6a7854ab7d62b0f95c788c
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 172e54108ff17d140a7e4bbb79da3671
   m_configObjects: {}
