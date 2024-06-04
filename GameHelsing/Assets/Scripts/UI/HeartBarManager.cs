@@ -6,7 +6,7 @@ using UnityEngine;
 public class HeartBarManager : MonoBehaviour
 {
     public GameObject heartPrefab;
-    public PlayerData playerData;
+    private PlayerData playerData;
     private List<BarHeart> hearts = new List<BarHeart>();
 
     int redHeartsCount = 0;
@@ -22,6 +22,7 @@ public class HeartBarManager : MonoBehaviour
     }
     private void Start()
     {
+        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         DrawHearts();
     }
     public void DrawHearts()

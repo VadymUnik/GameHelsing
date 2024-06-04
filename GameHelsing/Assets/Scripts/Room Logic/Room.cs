@@ -34,7 +34,6 @@ public class Room : MonoBehaviour
     {
         bool canHorisontal;
         bool canVertical;
-        Debug.Log(isLeftOpen + "   " + isRightOpen + "   " + isUpOpen + "   " + isDownOpen);
         if (desiredDirection.x > 0)
             canHorisontal = isLeftOpen;
         else

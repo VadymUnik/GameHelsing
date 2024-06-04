@@ -101,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 9
-        height: 10
+        y: 16
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: Heart_Half
       rect:
         serializedVersion: 2
-        x: 10
-        y: 0
-        width: 9
-        height: 10
+        x: 15
+        y: 16
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +142,10 @@ TextureImporter:
       name: Heart_Empty
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
-        width: 9
-        height: 10
+        x: 30
+        y: 16
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,12 +163,12 @@ TextureImporter:
       name: BlueHeart_Full
       rect:
         serializedVersion: 2
-        x: 30
-        y: 0
-        width: 9
-        height: 10
+        x: 45
+        y: 16
+        width: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: BlueHeart_Half
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 9
-        height: 10
+        x: 60
+        y: 16
+        width: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: 9d0c8e84bf329744692154873b46e493
       internalID: 594933891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hearts_Outline
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e63aac186ca5748a6d80a3f797aab7
+      internalID: 669479031
       vertices: []
       indices: 
       edges: []
@@ -217,6 +238,7 @@ TextureImporter:
       Heart_Empty: -872804066
       Heart_Full: -1638475943
       Heart_Half: 2124925844
+      Hearts_Outline: 669479031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
