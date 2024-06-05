@@ -12,6 +12,7 @@ public class EnemyProjectile : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     private Camera mainCam;
+    [SerializeField] Animator animator;
     
     void Start()
     {
@@ -37,7 +38,9 @@ public class EnemyProjectile : MonoBehaviour
     }
     private void DestroyProjectile()
     {
-        Destroy(gameObject);
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+        rb.velocity = new Vector2(0,0);
+        animator.SetTrigger("Destroyed");
     }
     public int GetDamage()
     {
@@ -48,7 +51,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
-            Destroy(gameObject);
+            DestroyProjectile();
         }
     }
 

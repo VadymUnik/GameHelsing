@@ -22,6 +22,8 @@ public class EnemyData : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] GameObject Gun;
+    
 
     public LayerMask IgnoreLayersMask;
     private GameObject homeRoom;
@@ -37,13 +39,15 @@ public class EnemyData : MonoBehaviour
         if (alive)
         {
             Quaternion gunRotation = shooter.GetRotation();
-            if (gunRotation.eulerAngles.z > 90 && gunRotation.eulerAngles.z < 270)
+            if (gunRotation.eulerAngles.z > 95 && gunRotation.eulerAngles.z < 265 )
             {
                 sprite.transform.localScale = new Vector3(-8, 8, 8);
+                Gun.transform.localPosition = new Vector3(-0.188f, 0f, 0f);
             }
-            else
+            else if (gunRotation.eulerAngles.z < 85 || gunRotation.eulerAngles.z > 275 )
             {
                 sprite.transform.localScale = new Vector3(8, 8, 8);
+                Gun.transform.localPosition = new Vector3(0.188f, 0f, 0f);
             }
             animator.SetFloat("Speed", aiPath.desiredVelocity.magnitude);
         }

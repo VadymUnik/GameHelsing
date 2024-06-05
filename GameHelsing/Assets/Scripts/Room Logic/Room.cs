@@ -9,6 +9,8 @@ public class Room : MonoBehaviour
     [SerializeField] public Transform EntranceLeft, EntranceRight, EntranceBottom, EntranceTop;
     [SerializeField] public Transform archLeft, archRight, archBottom, archTop;
     [SerializeField] private float roomSize;
+    [SerializeField] public bool isStartRoom = false;
+    [SerializeField] public bool isStartRoomFirst = true;
 
     
 

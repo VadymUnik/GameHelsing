@@ -159,6 +159,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Staff_03
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 182
+        width: 29
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4319de3fa0cf6594fbe0a9a348e80e36
+      internalID: -219678639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_04
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 103
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e29529a02e6974eb3c31bfc0358a22
+      internalID: -513720199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -173,6 +215,8 @@ TextureImporter:
       Gun01: 1790422248
       Staff_01: 1423377663
       Staff_02: 1003421224
+      Staff_03: -219678639
+      Staff_04: -513720199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

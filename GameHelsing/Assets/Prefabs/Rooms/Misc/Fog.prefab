@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog_Hallway (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3836512261683135184, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18
@@ -258,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_Name
       value: Fog_Hallway
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3836512261683135184, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -332,6 +340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog_Hallway (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3836512261683135184, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -404,6 +416,10 @@ PrefabInstance:
     - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_Name
       value: Fog_Hallway (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859811380160237397, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3836512261683135184, guid: 84f9fc38b9c7d0d45a987a0e0949b4a7, type: 3}
       propertyPath: m_LocalPosition.x
