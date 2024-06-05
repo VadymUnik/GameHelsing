@@ -249,8 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc5cd2b43bf5e54e98b72dd1c3023fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magSize: 0
-  detectionDistance: 0
+  magSize: 1
+  detectionDistance: 5
   lineOfSightDuration: 1
   IgnoreLayersMask:
     serializedVersion: 2

@@ -16,6 +16,13 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private float reloadTime;
     [SerializeField] private int magSize;
+
+    // New serialized fields for bullet spread
+    [SerializeField] private float randomOffsetMax; // keep it above zero
+    [SerializeField] private float randomOffsetMin; // keep it below zero
+    [SerializeField] private int numBullets;
+
+
     private bool isOnShotDelay;
     private bool canShoot = true;
     private bool isReloading = false;
@@ -27,11 +34,13 @@ public class Shooter : MonoBehaviour
 
     private Camera mainCam;
     private Vector3 mousePos;
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         bulletsLeft = magSize;
     }
+
 
     void Update()
     {
@@ -63,33 +72,45 @@ public class Shooter : MonoBehaviour
         } 
     }
     
-    private void ShootBullet()
+     private void ShootBullet()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
-        if(bullet.TryGetComponent(out Projectile projectile))
+        float randomOffset = Random.Range(randomOffsetMin, randomOffsetMax);
+        Quaternion bulletRotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + randomOffset);
+
+        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, bulletRotation);
+        if (bullet.TryGetComponent(out Projectile projectile))
         {
             projectile.SetParameters(bulletMoveSpeed, bulletLifeTime, bulletDamage);
         }
-    } 
-    private void HandleShooting() 
+    }
+
+
+     private void HandleShooting()
     {
-        if (!isOnShotDelay) 
+        if (!isOnShotDelay)
         {
             shootTimer += Time.deltaTime;
-            if (shootTimer >= timeBetweenShots) 
+            if (shootTimer >= timeBetweenShots)
             {
                 isOnShotDelay = true;
                 shootTimer = 0f;
             }
         }
 
-        if (Input.GetMouseButton(0) && isOnShotDelay && canShoot) 
+        if (Input.GetMouseButton(0) && isOnShotDelay && canShoot)
         {
-            ShootBullet();
-            bulletsLeft--;
+            // Fire multiple bullets (5-10 bullets)
+            int newnumBullets = numBullets;
+            for (int i = 0; i < newnumBullets; i++)
+            {
+                ShootBullet();
+            }
+
+            bulletsLeft--; // Deduct only one bullet from the magazine
             isOnShotDelay = false;
         }
     }
+    
     private void HandleReloading() 
     {
         if (!hasReloadText) 

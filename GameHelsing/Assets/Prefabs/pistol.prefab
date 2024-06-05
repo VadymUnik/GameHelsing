@@ -165,11 +165,14 @@ MonoBehaviour:
   reloadTextPrefab: {fileID: 8925539292077978720, guid: b7a41259fc6631247991f3c8c045b6e4, type: 3}
   shootPosition: {fileID: 7886749537948683285}
   bulletMoveSpeed: 20
-  bulletDamage: 5
+  bulletDamage: 12
   bulletLifeTime: 2
-  timeBetweenShots: 0.04
-  reloadTime: 2.5
-  magSize: 32
+  timeBetweenShots: 0.3
+  reloadTime: 1.5
+  magSize: 12
+  randomOffsetMax: 10
+  randomOffsetMin: -10
+  numBullets: 1
 --- !u!1 &4695748125826503235
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6054863150807205501}
   m_Layer: 0
-  m_Name: mac-10
+  m_Name: pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

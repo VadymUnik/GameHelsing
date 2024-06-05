@@ -9,7 +9,7 @@ public class TEMP_EnemyCollision : MonoBehaviour
 {
     [SerializeField] private int magSize; //TO FIX - DOES NOTHING!
     [SerializeField] private float detectionDistance; //TO FIX - DOES NOTHING!
-    [SerializeField] private float lineOfSightDuration = 0.5f;
+    [SerializeField] private float lineOfSightDuration = 1f;
 
     public LayerMask IgnoreLayersMask;
     private Transform target;
