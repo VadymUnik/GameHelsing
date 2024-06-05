@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+
     [Header("Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject reloadTextPrefab;
+    [SerializeField] private GameObject particlesPrefab;
     [SerializeField] private Transform shootPosition;
 
     [Header("Shooting parameters")]
@@ -21,6 +24,7 @@ public class Shooter : MonoBehaviour
     private bool isReloading = false;
     private bool hasReloadText = false;
     private bool isDashing = false;
+    private bool isShooting = false;
     private float shootTimer;
     private float reloadTimer;
     private int bulletsLeft;
@@ -31,6 +35,7 @@ public class Shooter : MonoBehaviour
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         bulletsLeft = magSize;
+        animator.SetInteger("Bullets Left", bulletsLeft);
     }
 
     void Update()
@@ -40,7 +45,7 @@ public class Shooter : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        if((Input.GetKey("r") && bulletsLeft < magSize) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0)))
+        if((Input.GetKey("r") && bulletsLeft < magSize && !isReloading) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0) && !isReloading))
         {
             isReloading = true;
             HandleReloading();
@@ -48,13 +53,14 @@ public class Shooter : MonoBehaviour
 
         if (isReloading || bulletsLeft <= 0 || isDashing)
         {
+            animator.ResetTrigger("Idle");
+            animator.SetBool("Shoot", false);
             canShoot = false;
         }
         else
         {
             canShoot = true;
         }
-
         HandleShooting();
 
         if (isReloading) 
@@ -65,6 +71,7 @@ public class Shooter : MonoBehaviour
     
     private void ShootBullet()
     {
+        animator.SetBool("Shoot", true);
         GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
         if(bullet.TryGetComponent(out Projectile projectile))
         {
@@ -73,6 +80,7 @@ public class Shooter : MonoBehaviour
     } 
     private void HandleShooting() 
     {
+        
         if (!isOnShotDelay) 
         {
             shootTimer += Time.deltaTime;
@@ -84,16 +92,28 @@ public class Shooter : MonoBehaviour
         }
 
         if (Input.GetMouseButton(0) && isOnShotDelay && canShoot) 
-        {
+        {  
             ShootBullet();
             bulletsLeft--;
+            if (bulletsLeft <= 0)
+            {
+                animator.SetBool("Shoot", false);
+                animator.SetBool("IsEmpty", true);
+            }
             isOnShotDelay = false;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            animator.SetBool("Shoot", false);
         }
     }
     private void HandleReloading() 
     {
         if (!hasReloadText) 
         {
+            animator.ResetTrigger("Idle");
+            animator.SetBool("Reload", true);
             CreateReloadText();
             hasReloadText = true;
         }
@@ -101,6 +121,8 @@ public class Shooter : MonoBehaviour
         reloadTimer += Time.deltaTime;
         if (reloadTimer >= reloadTime) 
         {
+            animator.SetBool("IsEmpty", false);
+            animator.SetBool("Reload", false);
             bulletsLeft = magSize;
             reloadTimer = 0;
             hasReloadText = false;
@@ -110,7 +132,7 @@ public class Shooter : MonoBehaviour
     private void CreateReloadText()
     {
         GameObject ParentObject = transform.parent.gameObject;
-        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(ParentObject.transform.position.x, ParentObject.transform.position.y + 1), Quaternion.Euler(0, 0, 0), ParentObject.transform);
+        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(ParentObject.transform.position.x, ParentObject.transform.position.y + 1.5f), Quaternion.Euler(0, 0, 0), ParentObject.transform);
         if(ReloadText.TryGetComponent(out ReloadTextController reloadTextController))
         {
             reloadTextController.SetReloadTime(reloadTime);

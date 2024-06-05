@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -8,14 +9,14 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] Animator animator;
 
     [SerializeField] Shooter PlayerShooter;
-
+    [SerializeField] GameObject DashSmokePrefab;
     [SerializeField] SpriteRenderer sprite;
 
     [SerializeField] GameObject Gun;
 
     playerMovement playerMovement;
 
-    
+    GameObject DashSmoke;
 
     void Start()
     {
@@ -42,5 +43,15 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("Speed", playerMovement.rb.velocity.magnitude);
         animator.SetFloat("VelocityX", playerMovement.rb.velocity.x);
         animator.SetFloat("ScaleX", sprite.transform.localScale.x);
+    }
+
+    public void Dashed()
+    {
+        DashSmoke = Instantiate(DashSmokePrefab, transform.position, transform.rotation, transform);
+        animator.SetBool("Dashed", true);
+    }
+    public void UnDashed()
+    {
+        animator.SetBool("Dashed", false);
     }
 }

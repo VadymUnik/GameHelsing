@@ -119,6 +119,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7711857685439933396}
     m_Modifications:
+    - target: {fileID: 1884587657712558665, guid: d74c021ef17591540a77697c90415f07, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2806215404956721308, guid: d74c021ef17591540a77697c90415f07, type: 3}
       propertyPath: m_Name
       value: Sprite

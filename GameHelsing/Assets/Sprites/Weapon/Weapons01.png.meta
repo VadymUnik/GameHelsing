@@ -189,7 +189,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,6 +197,321 @@ TextureImporter:
       bones: []
       spriteID: d7e29529a02e6974eb3c31bfc0358a22
       internalID: -513720199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Empty
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 242
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76125ae9257ccbc4791a00989c094cd7
+      internalID: 250028307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_02
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 242
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5bccdf9ec59f674c91efe07cacfb9ca
+      internalID: -583861087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_04
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 242
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4dcdf012f96caa40babd4e6e940aedf
+      internalID: 1035834410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_06
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 242
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb37447227bcf1945a9e4ba5c0d757c4
+      internalID: -1899793596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_01
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 268
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b2b84275305f9b488c00b3c2d406713
+      internalID: 1131578407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_02
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 267
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698f1fd77cc34fa4b968149a40e3b13c
+      internalID: 1564506882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_03
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 259
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f136013036837f449b3542e3197f4c80
+      internalID: 1546822500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_04
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 260
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc13be4b898652746ab81934da3bd5ee
+      internalID: -2053590904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_05
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 253
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e3a1397a82f744e9d5c6c0e4d089a7
+      internalID: -1649618340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shatter_06
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 253
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99f69c7c04b659048b9f8989ccde4f57
+      internalID: -435453079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_07
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 212
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85f9ec053cf29241ad87e048d2d913e
+      internalID: -599972175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_05
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 212
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ea52d0a9e22329488bc845d42d5e483
+      internalID: 685003705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_03
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 212
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de76bd7b9627bd64392c5db6ef2765a6
+      internalID: 249734953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Reload_01
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 212
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26086cced35d1b743aa0b6eb839129f3
+      internalID: -301362208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Staff_01_Shoot
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 242
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba5a9468955751469a61ec06293f8c3
+      internalID: -69890110
       vertices: []
       indices: 
       edges: []
@@ -214,9 +529,26 @@ TextureImporter:
     nameFileIdTable:
       Gun01: 1790422248
       Staff_01: 1423377663
+      Staff_01_Empty: 250028307
+      Staff_01_Reload_01: -301362208
+      Staff_01_Reload_02: -583861087
+      Staff_01_Reload_03: 249734953
+      Staff_01_Reload_04: 1035834410
+      Staff_01_Reload_05: 685003705
+      Staff_01_Reload_06: -1899793596
+      Staff_01_Reload_07: -599972175
+      Staff_01_Shatter_01: 1131578407
+      Staff_01_Shatter_02: 1564506882
+      Staff_01_Shatter_03: 1546822500
+      Staff_01_Shatter_04: -2053590904
+      Staff_01_Shatter_05: -1649618340
+      Staff_01_Shatter_06: -435453079
+      Staff_01_Shoot: -69890110
       Staff_02: 1003421224
       Staff_03: -219678639
       Staff_04: -513720199
+      Weapons01_15: 306381428
+      Weapons01_4: -493796719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

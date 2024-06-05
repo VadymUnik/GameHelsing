@@ -250,6 +250,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &102324127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3981595694405536171, guid: da048d12c9965264187362ccb63ae553, type: 3}
+  m_PrefabInstance: {fileID: 882681609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &102324131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102324127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfe327d9196e7b4796452d357d79bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlesPrefab: {fileID: 3293847117531193602, guid: 2a39f65c1287b144993887f7b3744760, type: 3}
+  particleSource: {fileID: 858056206}
 --- !u!1 &739671860
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +397,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 883675194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &858056206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5230094556484819163, guid: da048d12c9965264187362ccb63ae553, type: 3}
+  m_PrefabInstance: {fileID: 882681609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &882681609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -446,10 +470,17 @@ PrefabInstance:
       propertyPath: bulletLifeTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8803328281671339534, guid: da048d12c9965264187362ccb63ae553, type: 3}
+      propertyPath: particlesPrefab
+      value: 
+      objectReference: {fileID: 3293847117531193602, guid: 2a39f65c1287b144993887f7b3744760, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3981595694405536171, guid: da048d12c9965264187362ccb63ae553, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 102324131}
   m_SourcePrefab: {fileID: 100100000, guid: da048d12c9965264187362ccb63ae553, type: 3}
 --- !u!1 &883675191
 GameObject:

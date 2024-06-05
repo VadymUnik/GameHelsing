@@ -233,22 +233,31 @@ public class RoomGenerator : MonoBehaviour
         if ((parentRoom.isUpOpen && newRoom.isDownOpen && newRoom.desiredDirection.y > 0) || (parentRoom.isDownOpen && newRoom.isUpOpen && newRoom.desiredDirection.y < 0))
             verticalCanConnect = true;
 
-        if(horisontalCanConnect && verticalCanConnect)
+        if (parentRoom.isStartRoom)
         {
-            horisontalCanConnect = upOrSide > 4 ? true : false;
-            verticalCanConnect = upOrSide > 4 ? false : true;
-        }
-
-        if (horisontalCanConnect)
-        {
+            if(newRoom.desiredDirection.y > 0)
+            direction.Set(0, newRoom.desiredDirection.y * shift, 0);
+            else
             direction.Set(newRoom.desiredDirection.x * shift, 0, 0);
         }
-
-        if (verticalCanConnect)
+        else
         {
-            direction.Set(0, newRoom.desiredDirection.y * shift, 0);
-        }
+            if(horisontalCanConnect && verticalCanConnect)
+            {
+                horisontalCanConnect = upOrSide > 4 ? true : false;
+                verticalCanConnect = upOrSide > 4 ? false : true;
+            }
 
+            if (horisontalCanConnect)
+            {
+                direction.Set(newRoom.desiredDirection.x * shift, 0, 0);
+            }
+
+            if (verticalCanConnect)
+            {
+                direction.Set(0, newRoom.desiredDirection.y * shift, 0);
+            }
+        }
         if(direction.x != 0)
         {
             newRoom.isLeftOpen = direction.x > 0 ? false : newRoom.isLeftOpen;
