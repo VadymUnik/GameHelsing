@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 225645754650563118}
+  thisSprite: {fileID: 1535404158451565537}
   bulletPrefab: {fileID: 3075634239154962031, guid: 38b2df89248c606429d62a913aaab905, type: 3}
   reloadTextPrefab: {fileID: 8925539292077978720, guid: b7a41259fc6631247991f3c8c045b6e4, type: 3}
   particlesPrefab: {fileID: 3293847117531193602, guid: 2a39f65c1287b144993887f7b3744760, type: 3}

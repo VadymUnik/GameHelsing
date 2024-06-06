@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyShooter : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [Header("Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPosition;
@@ -33,6 +34,7 @@ public class EnemyShooter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         bulletsLeft = magSize;
         parentObject = transform.parent.gameObject;
+        animator.SetInteger("Bullets Left", bulletsLeft);
     }
 
     void Update()
@@ -60,11 +62,13 @@ public class EnemyShooter : MonoBehaviour
     
     private void ShootBullet()
     {
+        animator.SetBool("Shoot", true);
         GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
         if(bullet.TryGetComponent(out EnemyProjectile enemyProjectile))
         {
             enemyProjectile.SetParameters(bulletMoveSpeed, bulletLifeTime, bulletDamage);
         }
+        
     } 
     private void HandleShooting() 
     {
@@ -82,15 +86,26 @@ public class EnemyShooter : MonoBehaviour
         {
             ShootBullet();
             bulletsLeft--;
+            if (bulletsLeft <= 0)
+            {
+                animator.SetBool("Shoot", false);
+                animator.SetBool("IsEmpty", true);
+            }
             isOnShotDelay = false;
         }
     }
 
     private void HandleReloading() 
-    {
+    {   if (reloadTimer == 0)
+        {
+            animator.ResetTrigger("Idle");
+            animator.SetBool("Reload", true);
+        }
         reloadTimer += Time.deltaTime;
         if (reloadTimer >= reloadTime) 
         {
+            animator.SetBool("IsEmpty", false);
+            animator.SetBool("Reload", false);
             bulletsLeft = magSize;
             reloadTimer = 0;
             isReloading = false;

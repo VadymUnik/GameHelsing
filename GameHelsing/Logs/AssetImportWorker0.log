@@ -195,3 +195,8 @@ Received Import Request.
 Start importing Assets/Prefabs/Rooms/room_type4.prefab using Guid(641c22afb7a73d04f86579280ed412c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '156b742cfb26cc26c648e5d156c3ac9c') in 0.151068 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2170
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

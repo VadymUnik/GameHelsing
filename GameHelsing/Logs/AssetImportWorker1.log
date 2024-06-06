@@ -195,3 +195,32 @@ Received Import Request.
 Start importing Assets/Prefabs/Rooms/room_type3.prefab using Guid(dc51e5fdfd2244949bb5b0a86a246b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64774035220130d67797843c40f694d1') in 0.134159 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2170
+========================================================================
+Received Import Request.
+  Time since last request: 896.318671 seconds.
+  path: Assets/Prefabs/Rooms/room_type2.prefab
+  artifactKey: Guid(b16a95e4248606c4b8d5e79f85a05efa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Rooms/room_type2.prefab using Guid(b16a95e4248606c4b8d5e79f85a05efa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '891542b84aaf4721cf3ac7e80a160dab') in 0.164878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2190
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Prefabs/Rooms/typic_room.prefab
+  artifactKey: Guid(b9ff4d7349928b547b5576a72546dc3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Rooms/typic_room.prefab using Guid(b9ff4d7349928b547b5576a72546dc3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2dc8da43d031937fb80703902e59ac0') in 0.144278 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2189
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Prefabs/Rooms/room_type5.prefab
+  artifactKey: Guid(da4145a76c7171d4e8c048cd9dc5118b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Rooms/room_type5.prefab using Guid(da4145a76c7171d4e8c048cd9dc5118b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b052258c508d36781ea2e7d744bb15f9') in 0.126074 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2148
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

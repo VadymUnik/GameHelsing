@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer thisSprite;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject bulletPrefab;
@@ -24,7 +25,7 @@ public class Shooter : MonoBehaviour
     private bool isReloading = false;
     private bool hasReloadText = false;
     private bool isDashing = false;
-    private bool isShooting = false;
+
     private float shootTimer;
     private float reloadTimer;
     private int bulletsLeft;
