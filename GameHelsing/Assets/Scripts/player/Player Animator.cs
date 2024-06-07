@@ -18,6 +18,13 @@ public class PlayerAnimator : MonoBehaviour
 
     GameObject DashSmoke;
 
+    private AudioManager audioManager;
+
+    void OnEnable()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         playerMovement = GetComponent<playerMovement>();
@@ -31,12 +38,14 @@ public class PlayerAnimator : MonoBehaviour
             if (gunRotation.eulerAngles.z > 95 && gunRotation.eulerAngles.z < 265 )
             {
                 sprite.transform.localScale = new Vector3(-6.25f, 6.25f, 6.25f);
-                Gun.transform.localPosition = new Vector3(-0.43f, 0f, 0f);
+                Gun.transform.localPosition = new Vector3(-PlayerShooter.GetWeapon().gunShift, 0f, 0f);
+                Gun.transform.localScale = new Vector3(1f, -1f, 1f);
             }
             else if (gunRotation.eulerAngles.z < 85 || gunRotation.eulerAngles.z > 275 )
             {
                 sprite.transform.localScale = new Vector3(6.25f, 6.25f, 6.25f);
-                Gun.transform.localPosition = new Vector3(0.43f, 0f, 0f);
+                Gun.transform.localPosition = new Vector3(PlayerShooter.GetWeapon().gunShift, 0f, 0f);
+                Gun.transform.localScale = new Vector3(1f, PlayerShooter.GetYFlip() ? 1f : 1f, 1f);
             }
         }
 
@@ -47,6 +56,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Dashed()
     {
+        audioManager.PlaySound(audioManager.Dash);
         DashSmoke = Instantiate(DashSmokePrefab, transform.position, transform.rotation, transform);
         animator.SetBool("Dashed", true);
     }

@@ -13,11 +13,15 @@ public class LootCrate : MonoBehaviour
 
     private AudioManager audioManager;
 
+    private bool isDestroyed = false;
+
     
 
     private void OnEnable()
     {
+     
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager.PlaySound(audioManager.CrateSpawn);
         SpawnOnCreate.ForEach(prefab => { 
             Vector3 positionShift = new Vector3 (0, 0.4f, 0);
             Instantiate(prefab, transform.position + positionShift, transform.rotation);
@@ -26,8 +30,9 @@ public class LootCrate : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Projectile bullet = collision.GetComponent<Projectile>();
-        if (bullet != null)
+        if (bullet != null && !isDestroyed)
         {
+            isDestroyed = true;
             float damageAmount = bullet.GetDamage();
             Destroy(bullet.gameObject);
             health.Damage(damageAmount);

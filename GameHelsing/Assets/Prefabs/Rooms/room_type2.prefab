@@ -2815,7 +2815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  enemyPrefab: {fileID: 1038370675381493755, guid: 7d918a500fb364548a68522e0591ea08, type: 3}
   waveNumber: 2
 --- !u!1 &1346544477508760523
 GameObject:

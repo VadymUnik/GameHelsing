@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;
 
     Vector3 target, mousePos, refVel, shakeOffset;
 
@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour
     bool shaking;
 
     void Start(){
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         target = player.position;
         zStart = transform.position.z;
     }

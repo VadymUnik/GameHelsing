@@ -16,6 +16,10 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private float reloadTime;
     [SerializeField] private int magSize;
+
+    [SerializeField] public float randomOffsetMax;
+    [SerializeField] public float randomOffsetMin;
+    [SerializeField] public int numBullets;
     
     private GameObject parentObject;
 
@@ -62,8 +66,12 @@ public class EnemyShooter : MonoBehaviour
     
     private void ShootBullet()
     {
+        float randomOffset = Random.Range(randomOffsetMin, randomOffsetMax);
+
+        Quaternion bulletRotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + randomOffset);
         animator.SetBool("Shoot", true);
-        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
+
+        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, bulletRotation);
         if(bullet.TryGetComponent(out EnemyProjectile enemyProjectile))
         {
             enemyProjectile.SetParameters(bulletMoveSpeed, bulletLifeTime, bulletDamage);
@@ -84,7 +92,12 @@ public class EnemyShooter : MonoBehaviour
 
         if (isOnShotDelay && canShoot) 
         {
-            ShootBullet();
+            
+            int newnumBullets = numBullets;
+            for (int i = 0; i < newnumBullets; i++)
+            {
+                ShootBullet();
+            }
             bulletsLeft--;
             if (bulletsLeft <= 0)
             {

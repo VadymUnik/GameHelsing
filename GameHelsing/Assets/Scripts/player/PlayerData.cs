@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
@@ -10,10 +11,12 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int blueHealth;
     [SerializeField] private int money;
-
+    [SerializeField] private Shooter shooter;
     public static event Action OnHealthDataChanged;
     private bool isInvincible = false;
     private bool isDashing = false;
+
+    private AudioManager audioManager;
 
     private void AddMoney(int amount)
     {
@@ -124,5 +127,46 @@ public class PlayerData : MonoBehaviour
                     break;
             }
         }
+    
+        WeaponPickUp weaponCollided = collision.GetComponent<WeaponPickUp>();
+        if (collision.CompareTag("PickUpWeapon"))
+        {
+            weaponInReach = weaponCollided;
+            hasWeaponInReach = true;
+        }
     }
+
+    bool hasWeaponInReach = false;
+    WeaponPickUp weaponInReach;
+
+    void Update()
+    {
+        if (hasWeaponInReach)
+        {
+            if(Input.GetKeyDown("e") && !shooter.IsReloading())
+            {
+                audioManager.PlaySound(audioManager.PickUp);
+                WeaponScriptableObject buffer = shooter.GetWeapon();
+                int bulletsLeftShotter = shooter.GetBulletsLeft();
+                int bulletsLeftPickUp = weaponInReach.GetBulletsLeft();
+                
+                shooter.ChangeWeapon(weaponInReach.GetWeapon(), bulletsLeftPickUp);
+                weaponInReach.ChangeWeapon(buffer, bulletsLeftShotter);
+            }
+        }
+    }
+
+    void OnEnable()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        WeaponPickUp weaponCollided = collision.GetComponent<WeaponPickUp>();
+        if (collision.CompareTag("PickUpWeapon"))
+        {
+            hasWeaponInReach = false;
+        }
+    }
+
 }

@@ -136,7 +136,6 @@ public class RoomManager : MonoBehaviour
         }
 
     }
-
     private void RemoveGates()
     {
         Gates.ForEach(gate => { 

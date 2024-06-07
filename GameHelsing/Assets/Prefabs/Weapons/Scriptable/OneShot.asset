@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0da145f6a961e4fae5241908b37774, type: 3}
+  m_Name: OneShot
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3075634239154962031, guid: 4bc79dd87f3ca00488d3cdcea3f42c8f, type: 3}
+  particlesPrefab: {fileID: 3293847117531193602, guid: 12e4c5d86ed2d834583e45cb0b1ea3aa, type: 3}
+  animatorPrefab: {fileID: 9100000, guid: 8f975469a2213d742a92a75db69e660a, type: 2}
+  bulletMoveSpeed: 20
+  bulletDamage: 50
+  bulletLifeTime: 6
+  timeBetweenShots: 1.5
+  reloadTime: 5
+  magSize: 6
+  randomOffsetMax: 2
+  randomOffsetMin: -2
+  numBullets: 1
+  enableYflip: 0
+  defaultSprite: {fileID: -1349466681, guid: 8e4f79e4b6d6dbb44b4e5ecfc1bbfe58, type: 3}
+  spriteOutline: {fileID: 21300000, guid: 8ea0ec2268d1a1a4ea9c3616e6c93805, type: 3}
+  shotPosition: {x: 0.94, y: 0, z: 0}
+  SpriteRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
+  gunShift: 0.5

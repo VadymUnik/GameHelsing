@@ -18,6 +18,13 @@ public class Projectile : MonoBehaviour
     private Vector3 mousePos;
 
     [SerializeField] Animator animator;
+
+    private AudioManager audioManager;
+
+    void OnEnable()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
     
     void Start()
     {
@@ -56,6 +63,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
+            audioManager.PlaySound(audioManager.Hit_Wall);
             DestroyProjectile();
         }
     }

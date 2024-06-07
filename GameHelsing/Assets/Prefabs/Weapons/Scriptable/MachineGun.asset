@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0da145f6a961e4fae5241908b37774, type: 3}
+  m_Name: MachineGun
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3075634239154962031, guid: 36c6d2eb814e7084bacd60509e358c29, type: 3}
+  particlesPrefab: {fileID: 3293847117531193602, guid: 2a39f65c1287b144993887f7b3744760, type: 3}
+  animatorPrefab: {fileID: 9100000, guid: 44f0d0bcd48ccc344b190a43a3c9bb4f, type: 2}
+  bulletMoveSpeed: 12
+  bulletDamage: 3
+  bulletLifeTime: 1.2
+  timeBetweenShots: 0.05
+  reloadTime: 6
+  magSize: 100
+  randomOffsetMax: 12
+  randomOffsetMin: -12
+  numBullets: 1
+  enableYflip: 0
+  defaultSprite: {fileID: -1535721032, guid: 235b4fe32af231b48af98a41c8d9b7bd, type: 3}
+  spriteOutline: {fileID: 21300000, guid: 77e58f1f23a0c5a44afc7201a8da5a42, type: 3}
+  shotPosition: {x: 0.9, y: 0, z: 0}
+  SpriteRotation: {x: 0, y: 0, z: 0, w: 0}
+  gunShift: 0.43

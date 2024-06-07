@@ -33,6 +33,14 @@ public class EnemyData : MonoBehaviour
     private RaycastHit2D hit;
     private bool hasLineOfSight = false;
     private bool alive = true;
+
+    [SerializeField] AudioClip Death;
+    private AudioManager audioManager;
+
+    void OnEnable()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
     
     private void Update()
     {
@@ -94,6 +102,7 @@ public class EnemyData : MonoBehaviour
         if (bullet != null && alive)
         {
             float damageAmount = bullet.GetDamage();
+            Debug.Log("Enemy Received Damage : " + damageAmount);
             Destroy(bullet.gameObject);
             health.Damage(damageAmount);
             FillInWhite();
@@ -111,7 +120,9 @@ public class EnemyData : MonoBehaviour
             {
                 room.DecreaseEnemyCount();
             }
+            audioManager.PlaySound(Death);
             animator.SetTrigger("Death");
+            
         }
     }
 

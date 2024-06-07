@@ -8,6 +8,17 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float maxHealth = 50f;
     [SerializeField] private float health = 50f;
 
+    public AudioClip HitSound;
+
+    private AudioManager audioManager;
+
+
+
+    void OnEnable()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+
     public UnityEvent OnKilled;
 
     public void Heal(float amount)
@@ -26,6 +37,7 @@ public class HealthManager : MonoBehaviour
         {
             Kill();
         }
+        audioManager.PlaySound(HitSound);
     }
 
     public void Kill()

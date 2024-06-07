@@ -4,41 +4,44 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+
+    [SerializeField] private WeaponScriptableObject weapon;
     [SerializeField] private Animator animator;
+    
     [SerializeField] private SpriteRenderer thisSprite;
-
+ 
     [Header("Prefabs")]
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject reloadTextPrefab;
-    [SerializeField] private GameObject particlesPrefab;
-    [SerializeField] private Transform shootPosition;
+    [SerializeField] private Transform shootPosition; //TODO - Change To Scriptable Object!!!!!!!!
+    private AudioManager audioManager;
 
-    [Header("Shooting parameters")]
-    [SerializeField] private float bulletMoveSpeed;
-    [SerializeField] private float bulletDamage;
-    [SerializeField] private float bulletLifeTime;
-    [SerializeField] private float timeBetweenShots;
-    [SerializeField] private float reloadTime;
-    [SerializeField] private int magSize;
     private bool isOnShotDelay;
     private bool canShoot = true;
     private bool isReloading = false;
     private bool hasReloadText = false;
     private bool isDashing = false;
-
     private float shootTimer;
     private float reloadTimer;
     private int bulletsLeft;
 
     private Camera mainCam;
     private Vector3 mousePos;
-    void Start()
+
+    void OnEnable()
     {
+        SetUp();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        bulletsLeft = magSize;
+        bulletsLeft = weapon.magSize;
         animator.SetInteger("Bullets Left", bulletsLeft);
     }
 
+    void SetUp()
+    {
+        thisSprite.transform.localRotation = weapon.SpriteRotation;
+        shootPosition.transform.localPosition = weapon.shotPosition;
+        animator.runtimeAnimatorController = weapon.animatorPrefab;
+    }
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -46,7 +49,7 @@ public class Shooter : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        if((Input.GetKey("r") && bulletsLeft < magSize && !isReloading) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0) && !isReloading))
+        if((Input.GetKey("r") && bulletsLeft < weapon.magSize && !isReloading) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0) && !isReloading))
         {
             isReloading = true;
             HandleReloading();
@@ -70,37 +73,51 @@ public class Shooter : MonoBehaviour
         } 
     }
     
-    private void ShootBullet()
+     private void ShootBullet()
     {
-        animator.SetBool("Shoot", true);
-        GameObject bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
-        if(bullet.TryGetComponent(out Projectile projectile))
-        {
-            projectile.SetParameters(bulletMoveSpeed, bulletLifeTime, bulletDamage);
-        }
-    } 
-    private void HandleShooting() 
-    {
+        float randomOffset = Random.Range(weapon.randomOffsetMin, weapon.randomOffsetMax);
+        Quaternion bulletRotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + randomOffset);
         
-        if (!isOnShotDelay) 
+        animator.SetBool("Shoot", true);
+        audioManager.PlaySound(audioManager.Shoot);
+
+        GameObject bullet = Instantiate(weapon.bulletPrefab, shootPosition.position, bulletRotation);
+        if (bullet.TryGetComponent(out Projectile projectile))
+        {
+            projectile.SetParameters(weapon.bulletMoveSpeed, weapon.bulletLifeTime, weapon.bulletDamage);
+        }
+    }
+
+
+     private void HandleShooting()
+    {
+        if (!isOnShotDelay)
         {
             shootTimer += Time.deltaTime;
-            if (shootTimer >= timeBetweenShots) 
+            if (shootTimer >= weapon.timeBetweenShots)
             {
                 isOnShotDelay = true;
                 shootTimer = 0f;
             }
         }
 
-        if (Input.GetMouseButton(0) && isOnShotDelay && canShoot) 
-        {  
-            ShootBullet();
+        if (Input.GetMouseButton(0) && isOnShotDelay && canShoot)
+        {
+
+            int newnumBullets = weapon.numBullets;
+            for (int i = 0; i < newnumBullets; i++)
+            {
+                ShootBullet();
+            }
+
             bulletsLeft--;
+
             if (bulletsLeft <= 0)
             {
                 animator.SetBool("Shoot", false);
                 animator.SetBool("IsEmpty", true);
             }
+
             isOnShotDelay = false;
         }
 
@@ -109,6 +126,7 @@ public class Shooter : MonoBehaviour
             animator.SetBool("Shoot", false);
         }
     }
+    
     private void HandleReloading() 
     {
         if (!hasReloadText) 
@@ -120,11 +138,11 @@ public class Shooter : MonoBehaviour
         }
 
         reloadTimer += Time.deltaTime;
-        if (reloadTimer >= reloadTime) 
+        if (reloadTimer >= weapon.reloadTime) 
         {
             animator.SetBool("IsEmpty", false);
             animator.SetBool("Reload", false);
-            bulletsLeft = magSize;
+            bulletsLeft = weapon.magSize;
             reloadTimer = 0;
             hasReloadText = false;
             isReloading = false;
@@ -133,10 +151,10 @@ public class Shooter : MonoBehaviour
     private void CreateReloadText()
     {
         GameObject ParentObject = transform.parent.gameObject;
-        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(ParentObject.transform.position.x, ParentObject.transform.position.y + 1.5f), Quaternion.Euler(0, 0, 0), ParentObject.transform);
+        GameObject ReloadText = Instantiate(reloadTextPrefab, new Vector2(ParentObject.transform.position.x, ParentObject.transform.position.y + 1), Quaternion.Euler(0, 0, 0), ParentObject.transform);
         if(ReloadText.TryGetComponent(out ReloadTextController reloadTextController))
         {
-            reloadTextController.SetReloadTime(reloadTime);
+            reloadTextController.SetReloadTime(weapon.reloadTime);
         }
     }
 
@@ -152,5 +170,32 @@ public class Shooter : MonoBehaviour
     public Quaternion GetRotation()
     {
         return transform.rotation;
+    }
+
+    public bool GetYFlip()
+    {
+        return weapon.enableYflip;
+    }
+
+    public WeaponScriptableObject GetWeapon()
+    {
+        return weapon;
+    }
+
+    public bool IsReloading()
+    {
+        return isReloading;
+    }
+
+    public void ChangeWeapon(WeaponScriptableObject newWeapon, int bulletsLeft)
+    {
+        this.bulletsLeft = bulletsLeft;
+        weapon = newWeapon;
+        SetUp();
+    }
+
+    public int GetBulletsLeft()
+    {
+        return bulletsLeft;
     }
 }
