@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 269516022155872861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0056, y: 0.5391, z: 0}
-  m_LocalScale: {x: 2.8494704, y: 2.2791986, z: 1}
+  m_LocalPosition: {x: -0.0232, y: 0.6281, z: 0}
+  m_LocalScale: {x: 2.79174, y: 2.6026673, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5012351350715465234}
@@ -166,6 +166,7 @@ MonoBehaviour:
   IgnoreLayersMask:
     serializedVersion: 2
     m_Bits: 65
+  GunShift: 0.6
   Death: {fileID: 8300000, guid: 988602e43c6a6ae4b8ba8253bc030a91, type: 3}
 --- !u!114 &4403214451516765582
 MonoBehaviour:
@@ -375,7 +376,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027481884, y: 0.4647516}
+  m_Offset: {x: 0.0013939738, y: 0.6726576}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -386,7 +387,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0473545, y: 1.5748823}
+  m_Size: {x: 1.2437102, y: 2.1754997}
   m_EdgeRadius: 0
 --- !u!82 &4504467702760859933
 AudioSource:
@@ -513,9 +514,9 @@ Transform:
   m_GameObject: {fileID: 5198834659811196699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: -1.448, z: 0}
-  m_LocalScale: {x: 6.25, y: 6.25, z: 6.25}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.02, y: -1.79, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5012351350715465234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,11 +667,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2613977804756792260, guid: 21eff6edddb08584b9d462490cfa43b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.188
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 2613977804756792260, guid: 21eff6edddb08584b9d462490cfa43b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.037
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2613977804756792260, guid: 21eff6edddb08584b9d462490cfa43b3, type: 3}
       propertyPath: m_LocalPosition.z

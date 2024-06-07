@@ -166,6 +166,7 @@ MonoBehaviour:
   IgnoreLayersMask:
     serializedVersion: 2
     m_Bits: 65
+  GunShift: 0
   Death: {fileID: 8300000, guid: 988602e43c6a6ae4b8ba8253bc030a91, type: 3}
 --- !u!114 &4403214451516765582
 MonoBehaviour:
@@ -713,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 5778469978862671370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.188, y: 0.037, z: 0}
+  m_LocalPosition: {x: 0.188, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -20,6 +20,7 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] public float randomOffsetMax;
     [SerializeField] public float randomOffsetMin;
     [SerializeField] public int numBullets;
+
     
     private GameObject parentObject;
 

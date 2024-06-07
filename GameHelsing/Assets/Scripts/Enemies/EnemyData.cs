@@ -33,6 +33,8 @@ public class EnemyData : MonoBehaviour
     private RaycastHit2D hit;
     private bool hasLineOfSight = false;
     private bool alive = true;
+    
+    [SerializeField] private float GunShift;
 
     [SerializeField] AudioClip Death;
     private AudioManager audioManager;
@@ -50,12 +52,12 @@ public class EnemyData : MonoBehaviour
             if (gunRotation.eulerAngles.z > 95 && gunRotation.eulerAngles.z < 265 )
             {
                 sprite.transform.localScale = new Vector3(-8, 8, 8);
-                Gun.transform.localPosition = new Vector3(-0.188f, 0f, 0f);
+                Gun.transform.localPosition = new Vector3(-0.188f, GunShift, 0f);
             }
             else if (gunRotation.eulerAngles.z < 85 || gunRotation.eulerAngles.z > 275 )
             {
                 sprite.transform.localScale = new Vector3(8, 8, 8);
-                Gun.transform.localPosition = new Vector3(0.188f, 0f, 0f);
+                Gun.transform.localPosition = new Vector3(0.188f, GunShift, 0f);
             }
             animator.SetFloat("Speed", aiPath.desiredVelocity.magnitude);
         }
