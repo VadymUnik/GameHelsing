@@ -16,7 +16,7 @@ MonoBehaviour:
   particlesPrefab: {fileID: 3293847117531193602, guid: 2a39f65c1287b144993887f7b3744760, type: 3}
   animatorPrefab: {fileID: 9100000, guid: 99a7e2524f3d345429334e3955304439, type: 2}
   bulletMoveSpeed: 15
-  bulletDamage: 8
+  bulletDamage: 18
   bulletLifeTime: 1
   timeBetweenShots: 0.3
   reloadTime: 3

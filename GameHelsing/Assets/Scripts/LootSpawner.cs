@@ -12,11 +12,15 @@ public class LootSpawner : MonoBehaviour
     }
     public void SpawnLoot()
     {
+        int spawnChance = Random.Range(0, 11);
+        if (spawnChance > 4)
+        {
         int lootPoolSize = lootPool.Count;
 
         int lootIndex = Random.Range(0, lootPoolSize);
 
         Instantiate(lootPool[lootIndex], transform.position, transform.rotation);
+        }
     }
 }
 

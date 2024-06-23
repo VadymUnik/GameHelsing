@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8eaaac7e887494786191324d7e0a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: e83c6964f5d1efa47b1c65b524846828, type: 2}
+  weapon: {fileID: 11400000, guid: f24388af10c48cd46a1ae36750d93333, type: 2}
   sprite: {fileID: 8476827155975567697}
   outLine: {fileID: 908404380417968582}
+  bulletsLeft: 0
 --- !u!58 &3021480885343943141
 CircleCollider2D:
   m_ObjectHideFlags: 0

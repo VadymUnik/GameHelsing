@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon", menuName ="Weapon/Weapon")]
@@ -9,7 +6,7 @@ public class WeaponScriptableObject : ScriptableObject
     [Header("Prefabs")]
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject particlesPrefab;
-    [SerializeField] public AnimatorController animatorPrefab;
+    [SerializeField] public RuntimeAnimatorController  animatorPrefab;
 
     [Header("Shooting parameters")]
     [SerializeField] public float bulletMoveSpeed;

@@ -64,4 +64,9 @@ public class PlayerAnimator : MonoBehaviour
     {
         animator.SetBool("Dashed", false);
     }
+
+    public void Died()
+    {
+        animator.SetBool("Died", true);
+    }
 }

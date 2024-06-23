@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -11,6 +8,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip GateOpening;
     public AudioClip CrateDestroyed;
     public AudioClip CrateSpawn;
+    public AudioClip ItemPickUp;
+    public AudioClip EnemySpawn;
 
     [Header("Weapons")]
     public AudioClip GlassShatter;
@@ -21,6 +20,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Player")]
     public AudioClip Dash;
+    public AudioClip PlayerDamaged;
+    public AudioClip Death;
     //public AudioClip Walk;
 
 

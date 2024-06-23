@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -138,6 +138,7 @@ public class RoomManager : MonoBehaviour
     }
     private void RemoveGates()
     {
+        audioManager.PlaySound(audioManager.GateOpening);
         Gates.ForEach(gate => { 
             if (gate.TryGetComponent(out Gate currentGate))
             {

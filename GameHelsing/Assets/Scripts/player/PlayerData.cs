@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerData : MonoBehaviour
 {
@@ -14,10 +11,16 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private Shooter shooter;
     public static event Action OnHealthDataChanged;
     private bool isInvincible = false;
+    private float InvincibilityCoolDown = 1f;
     private bool isDashing = false;
+    private bool isAlive = true;
+
+    [SerializeField] private Animator animator;
+    private Camera mainCam;
 
     private AudioManager audioManager;
 
+    public UnityEvent playerDied;
     private void AddMoney(int amount)
     {
         money += amount;
@@ -47,14 +50,22 @@ public class PlayerData : MonoBehaviour
     }
     private void TakeDamage(int amount)
     {
-        if (!isInvincible)
+        if (!isInvincible && isAlive)
         {
+            isInvincible = true;
+            InvincibilityCoolDown = 1f;
             if (blueHealth > 0)
                 blueHealth -= amount; 
             else
                 health -= amount;
         OnHealthDataChanged?.Invoke();
-        //Debug.Log("Received " + amount + " damage! - " + health);
+        if (health <= 0)
+        {
+            playerDied.Invoke();
+            isAlive = false;
+        }
+        audioManager.PlaySound(audioManager.PlayerDamaged);
+        animator.SetBool("Damaged", true);
         }
     }
     private void IncreaseMaxHealth(int amount)
@@ -126,6 +137,7 @@ public class PlayerData : MonoBehaviour
                     Destroy(heartPickUp.gameObject);
                     break;
             }
+            audioManager.PlaySound(audioManager.ItemPickUp);
         }
     
         WeaponPickUp weaponCollided = collision.GetComponent<WeaponPickUp>();
@@ -141,6 +153,16 @@ public class PlayerData : MonoBehaviour
 
     void Update()
     {
+        if (isInvincible)
+        {
+            InvincibilityCoolDown -= Time.deltaTime;
+
+            if (InvincibilityCoolDown <= 0)
+            {
+                isInvincible = false;
+                animator.SetBool("Damaged", false);
+            }
+        }
         if (hasWeaponInReach)
         {
             if(Input.GetKeyDown("e") && !shooter.IsReloading())
@@ -159,6 +181,7 @@ public class PlayerData : MonoBehaviour
     void OnEnable()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

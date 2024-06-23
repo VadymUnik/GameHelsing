@@ -205,6 +205,10 @@ MonoBehaviour:
   blueHealth: 3
   money: 0
   shooter: {fileID: 6986482896694162913}
+  animator: {fileID: 531205239437050519}
+  playerDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4256200221369051703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +404,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05171013, y: 0.18898386}
+  m_Offset: {x: -0.03739886, y: 0.21045065}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -411,7 +415,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65275, y: 1.2788845}
+  m_Size: {x: 0.45239213, y: 0.9211035}
   m_EdgeRadius: 0
 --- !u!58 &5532592850890857439
 CircleCollider2D:

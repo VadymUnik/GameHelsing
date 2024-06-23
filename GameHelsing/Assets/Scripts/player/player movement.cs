@@ -21,7 +21,13 @@ public class playerMovement : MonoBehaviour
     [SerializeField] float dashCooldown = 3f;
     public bool isDashing;
     bool canDash = true;
+    bool isAlive = true;
 
+    private void Died()
+    {
+        isAlive = false;
+        rb.velocity = new Vector2(0, 0);
+    }
     private void Start()
     {
         canDash = true;
@@ -39,29 +45,27 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDashing)
+        if(isAlive)
         {
-            return; // Skip movement if currently dashing
-        }
+            if (isDashing)
+            {
+                return; // Skip movement if currently dashing
+            }
 
-        ProcessInputs();
+            ProcessInputs();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && (MoveDirection.x != 0 || MoveDirection.y != 0))
-        {
-            StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && (MoveDirection.x != 0 || MoveDirection.y != 0))
+            {
+                StartCoroutine(Dash());
+            }
+            
+            if (isDashing)
+            {
+                return; // Skip physics update if currently dashing
+            }
+            SmoothMovement = Vector2.SmoothDamp(SmoothMovement, MoveDirection, ref MovementInputSmoothVelocity, 0.09f);
+            Move();
         }
-        
-        if (isDashing)
-        {
-            return; // Skip physics update if currently dashing
-        }
-        SmoothMovement = Vector2.SmoothDamp(SmoothMovement, MoveDirection, ref MovementInputSmoothVelocity, 0.09f);
-        Move();
-    }
-
-    void FixedUpdate()
-    {
-        
     }
 
     void ProcessInputs()

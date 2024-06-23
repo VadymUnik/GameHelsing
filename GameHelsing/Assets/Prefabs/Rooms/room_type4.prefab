@@ -265,52 +265,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!1 &708516150059561538
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6047007083852016497}
-  - component: {fileID: 2525829898536785320}
-  m_Layer: 0
-  m_Name: Enemy_Spawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6047007083852016497
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708516150059561538}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.44, y: 3.11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3170198386575201582}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2525829898536785320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708516150059561538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1038370675381493755, guid: 7d918a500fb364548a68522e0591ea08, type: 3}
-  waveNumber: 2
 --- !u!1 &809503663599934212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,7 +4872,7 @@ Transform:
   m_GameObject: {fileID: 4721192242095143255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.47, y: -8.11, z: 0}
+  m_LocalPosition: {x: 0.1, y: -2.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4936,7 +4890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  enemyPrefab: {fileID: 1038370675381493755, guid: 7d918a500fb364548a68522e0591ea08, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
   waveNumber: 1
 --- !u!1 &4756683681203085375
 GameObject:
@@ -14032,7 +13987,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3318899638091103475}
-  - {fileID: 6047007083852016497}
+  - {fileID: 7604712805505617372}
   - {fileID: 7308302869647880813}
   - {fileID: 2350698428617691808}
   - {fileID: 156602505744980305}
@@ -14065,7 +14020,7 @@ MonoBehaviour:
   lootItemPrefab: {fileID: 2028612746296581298, guid: 0ff29a70267667740bef398064fdab48, type: 3}
   EnemySpawners:
   - {fileID: 4721192242095143255}
-  - {fileID: 708516150059561538}
+  - {fileID: 7028469577829169144}
   fogManager: {fileID: 8463758442176600838}
   audioManager: {fileID: 0}
 --- !u!61 &4979903441940540387
@@ -14961,6 +14916,53 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &7028469577829169144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7604712805505617372}
+  - component: {fileID: 9197137074826782987}
+  m_Layer: 0
+  m_Name: Enemy_Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7604712805505617372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028469577829169144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.22, y: -8.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3170198386575201582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9197137074826782987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028469577829169144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
+  waveNumber: 2
 --- !u!1 &7545813181330686954
 GameObject:
   m_ObjectHideFlags: 0

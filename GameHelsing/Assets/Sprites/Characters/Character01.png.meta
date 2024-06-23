@@ -811,7 +811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_34
+      name: Character01_Death_01
       rect:
         serializedVersion: 2
         x: 0
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_35
+      name: Character01_Death_02
       rect:
         serializedVersion: 2
         x: 32
@@ -853,7 +853,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_36
+      name: Character01_Death_03
       rect:
         serializedVersion: 2
         x: 64
@@ -874,7 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_37
+      name: Character01_Death_04
       rect:
         serializedVersion: 2
         x: 96
@@ -895,7 +895,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_38
+      name: Character01_Death_05
       rect:
         serializedVersion: 2
         x: 128
@@ -916,7 +916,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_39
+      name: Character01_Death_06
       rect:
         serializedVersion: 2
         x: 160
@@ -937,7 +937,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_40
+      name: Character01_Death_07
       rect:
         serializedVersion: 2
         x: 192
@@ -958,7 +958,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character01_41
+      name: Character01_Death_08
       rect:
         serializedVersion: 2
         x: 224
@@ -1155,7 +1155,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1199,15 +1199,7 @@ TextureImporter:
       Character01_32: -1801337785
       Character01_33: 1861042932
       Character01_33_: 1140911346
-      Character01_34: -2145693395
-      Character01_35: -953971726
-      Character01_36: 1967557706
-      Character01_37: 354685437
-      Character01_38: -1650952541
-      Character01_39: -139181317
       Character01_4: -1343490499
-      Character01_40: -435845046
-      Character01_41: 1511239241
       Character01_42: 584229520
       Character01_43: -1457730126
       Character01_44: 490805796
@@ -1219,6 +1211,14 @@ TextureImporter:
       Character01_5: 1666388575
       Character01_6: 225754730
       Character01_7: -492573675
+      Character01_Death_01: -2145693395
+      Character01_Death_02: -953971726
+      Character01_Death_03: 1967557706
+      Character01_Death_04: 354685437
+      Character01_Death_05: -1650952541
+      Character01_Death_06: -139181317
+      Character01_Death_07: -435845046
+      Character01_Death_08: 1511239241
       Character01_Idle_01: -1169236139
       Character01_Idle_02: 1033019033
       Character01_Run01: 860830859

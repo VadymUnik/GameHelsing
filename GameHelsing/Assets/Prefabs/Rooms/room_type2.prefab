@@ -2771,52 +2771,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!1 &1290351242437439808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 736164651167539632}
-  - component: {fileID: 4705884203988712472}
-  m_Layer: 0
-  m_Name: Enemy_Spawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &736164651167539632
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290351242437439808}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.28, y: 4.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1573266538148456003}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4705884203988712472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290351242437439808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1038370675381493755, guid: 7d918a500fb364548a68522e0591ea08, type: 3}
-  waveNumber: 2
 --- !u!1 &1346544477508760523
 GameObject:
   m_ObjectHideFlags: 0
@@ -6516,6 +6470,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1573266538148456003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2227872494033016099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7849168217552827874}
+  - component: {fileID: 8383317968961015394}
+  m_Layer: 0
+  m_Name: Enemy_Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7849168217552827874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2227872494033016099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.69, y: -2.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573266538148456003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8383317968961015394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2227872494033016099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
+  waveNumber: 1
 --- !u!1 &2233018268942691011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6747,6 +6748,53 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &2575789105492757422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3639544005963495912}
+  - component: {fileID: 6371344746386037266}
+  m_Layer: 0
+  m_Name: Enemy_Spawner (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3639544005963495912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575789105492757422}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.2, y: -2.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573266538148456003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6371344746386037266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575789105492757422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
+  waveNumber: 1
 --- !u!1 &3162436689708596394
 GameObject:
   m_ObjectHideFlags: 0
@@ -7678,7 +7726,7 @@ Transform:
   m_GameObject: {fileID: 3834512663844307935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.14, y: -2.32, z: 0}
+  m_LocalPosition: {x: -3.05, y: -0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7697,6 +7745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
   waveNumber: 1
 --- !u!1 &3951350496525590730
 GameObject:
@@ -20532,7 +20581,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4331379252345657905}
-  - {fileID: 736164651167539632}
+  - {fileID: 4936857055970667155}
+  - {fileID: 7849168217552827874}
+  - {fileID: 3639544005963495912}
   - {fileID: 7723593724542724179}
   - {fileID: 5714159039215431765}
   - {fileID: 5006908536959945579}
@@ -20565,7 +20616,9 @@ MonoBehaviour:
   lootItemPrefab: {fileID: 2028612746296581298, guid: 0ff29a70267667740bef398064fdab48, type: 3}
   EnemySpawners:
   - {fileID: 3834512663844307935}
-  - {fileID: 1290351242437439808}
+  - {fileID: 8046305352820050980}
+  - {fileID: 2227872494033016099}
+  - {fileID: 2575789105492757422}
   fogManager: {fileID: 1425251705728722473}
   audioManager: {fileID: 0}
 --- !u!61 &4139736207660273590
@@ -20613,6 +20666,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 27.5, y: 23.425423}
   m_EdgeRadius: 0
+--- !u!1 &8046305352820050980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4936857055970667155}
+  - component: {fileID: 5104785155051256607}
+  m_Layer: 0
+  m_Name: Enemy_Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4936857055970667155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046305352820050980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.24, y: -6.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573266538148456003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5104785155051256607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046305352820050980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b805ed2ce3d14f4d82a09ac985b1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1038370675381493755, guid: 60cbe6d50a9868f4685b9cd22f38fe5b, type: 3}
+  smokePrefab: {fileID: 2857886122386327035, guid: 64fe54ccb642dcc42a0a77c95d16a761, type: 3}
+  waveNumber: 1
 --- !u!1 &8104145451485814900
 GameObject:
   m_ObjectHideFlags: 0

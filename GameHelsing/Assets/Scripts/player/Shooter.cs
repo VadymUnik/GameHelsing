@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Shooter : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Animator animator;
     
     [SerializeField] private SpriteRenderer thisSprite;
+    [SerializeField] TextMeshProUGUI ammoText;
  
     [Header("Prefabs")]
     [SerializeField] private GameObject reloadTextPrefab;
@@ -23,7 +23,8 @@ public class Shooter : MonoBehaviour
     private float shootTimer;
     private float reloadTimer;
     private int bulletsLeft;
-
+    
+    private bool isAlive = true;
     private Camera mainCam;
     private Vector3 mousePos;
 
@@ -41,36 +42,51 @@ public class Shooter : MonoBehaviour
         thisSprite.transform.localRotation = weapon.SpriteRotation;
         shootPosition.transform.localPosition = weapon.shotPosition;
         animator.runtimeAnimatorController = weapon.animatorPrefab;
+        ammoText.text = bulletsLeft + "|" + weapon.magSize;
+    }
+
+    public void Died()
+    {
+        isAlive = false;
     }
     void Update()
     {
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePos - transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-        if((Input.GetKey("r") && bulletsLeft < weapon.magSize && !isReloading) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0) && !isReloading))
+        if (isAlive)
         {
-            isReloading = true;
-            HandleReloading();
-        }
+            mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePos - transform.position;
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        if (isReloading || bulletsLeft <= 0 || isDashing)
-        {
-            animator.ResetTrigger("Idle");
-            animator.SetBool("Shoot", false);
-            canShoot = false;
+            if((Input.GetKey("r") && bulletsLeft < weapon.magSize && !isReloading) || (bulletsLeft == 0 && Input.GetMouseButtonDown(0) && !isReloading))
+            {
+                isReloading = true;
+                HandleReloading();
+            }
+
+            if (isReloading || bulletsLeft <= 0 || isDashing)
+            {
+                animator.ResetTrigger("Idle");
+                animator.SetBool("Shoot", false);
+                canShoot = false;
+            }
+            else
+            {
+                canShoot = true;
+            }
+            HandleShooting();
+
+            if (isReloading) 
+            {
+                HandleReloading();
+            } 
+            ammoText.text = bulletsLeft + "|" + weapon.magSize;
         }
         else
         {
-            canShoot = true;
+            ammoText.text = "";
         }
-        HandleShooting();
-
-        if (isReloading) 
-        {
-            HandleReloading();
-        } 
+        
     }
     
      private void ShootBullet()
