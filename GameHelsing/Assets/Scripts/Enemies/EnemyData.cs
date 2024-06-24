@@ -10,8 +10,8 @@ using Pathfinding;
 
 public class EnemyData : MonoBehaviour
 {
-    [SerializeField] private int magSize; //TO FIX - DOES NOTHING!
-    [SerializeField] private float detectionDistance; //TO FIX - DOES NOTHING!
+    [SerializeField] private int magSize;
+    [SerializeField] private float detectionDistance;
     [SerializeField] private float lineOfSightDuration = 0.5f;
 
     [SerializeField] private HealthManager health;
@@ -23,8 +23,10 @@ public class EnemyData : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] GameObject Gun;
-    
 
+    [SerializeField] private int KillScore;
+    
+    
     public LayerMask IgnoreLayersMask;
     private GameObject homeRoom;
     private Transform target;
@@ -38,10 +40,12 @@ public class EnemyData : MonoBehaviour
 
     [SerializeField] AudioClip Death;
     private AudioManager audioManager;
+    private ScoreCounter _scoreCounter;
 
     void OnEnable()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        _scoreCounter = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<ScoreCounter>();
     }
     
     private void Update()
@@ -115,6 +119,7 @@ public class EnemyData : MonoBehaviour
     {
         if (alive)
         {
+            _scoreCounter.AddScore(KillScore);
             alive = false;
             aiPath.canMove = false;
             Destroy(shooter.transform.gameObject);

@@ -21,7 +21,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] AudioManager audioManager;
     
-    
+    private int RoomClearScore = 200;
     private int currentWave = 1;
     private int finalWave;
     private List<GameObject> Gates = new List<GameObject>();
@@ -32,9 +32,12 @@ public class RoomManager : MonoBehaviour
     private bool NotActivated = true;
     private bool playerInRoom = false;
 
+    private ScoreCounter _scoreCounter;
+
     private void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        _scoreCounter = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<ScoreCounter>();
         enemyCount = EnemySpawners.Count;
     }
     private void Update()
@@ -43,6 +46,7 @@ public class RoomManager : MonoBehaviour
         {
             if (enemyCount <= 0)
             {
+                _scoreCounter.AddScore(RoomClearScore);
                 RemoveGates();
                 SpawnLoot();
                 this.enabled = false;

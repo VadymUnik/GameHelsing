@@ -163,6 +163,7 @@ MonoBehaviour:
   animator: {fileID: 4835986832318921714}
   rb: {fileID: 8045519474685932104}
   Gun: {fileID: 5778469978862671370}
+  KillScore: 150
   IgnoreLayersMask:
     serializedVersion: 2
     m_Bits: 65

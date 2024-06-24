@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FadeScreen : MonoBehaviour
 {
-    [SerializeField] GameObject Button;
+    [SerializeField] List<GameObject> Buttons = new List<GameObject>();
     public void ActivateButton()
     {
-        Button.SetActive(true);
+        Buttons.ForEach(Button => { 
+            Button.SetActive(true);
+        });
     }
 }

@@ -8,6 +8,9 @@ TagManager:
   - Room
   - AudioManager
   - PickUpWeapon
+  - ScoreSender
+  - ScoreCounter
+  - ScoreReceiver
   layers:
   - Default
   - TransparentFX
